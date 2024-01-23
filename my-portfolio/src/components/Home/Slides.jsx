@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Box, Slide } from '@mui/material';
+import { Box, Slide, useMediaQuery, useTheme } from '@mui/material';
 import NavBar from './Slides/NavBar';
 import Header from '../Header/Header';
 
@@ -42,6 +42,8 @@ const Slides = (props) => {
         [transSpeed]
     );
 
+    const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('sm'));
+
     const scrollTimeout = useRef(null);
     const acceptScroll = useRef(true);
     const deltaY = useRef(0);
@@ -83,26 +85,31 @@ const Slides = (props) => {
         position: 'fixed',
     };
 
+    const containerStyle = {
+        overflowY: 'hidden',
+    };
+
     return (
         <Box
             ref={containerRef}
-            sx={{ overscrollBehavior: 'none' }}
+            sx={{ overscrollBehavior: 'none', ...containerStyle }}
             onWheel={handleScrollEvent}
             onTouchMove={handleScrollEvent}
         >
-            <Header orientation="vertical"
+            <Header
+                orientation={isSmallScreen ? 'horizontal' : 'vertical'}
                 length={components.length}
                 currIdx={slideState.currentIdx}
                 clickHandler={updateSlideState}
             />
             <NavBar
-                orientation="vertical"
+                orientation={isSmallScreen ? 'horizontal' : 'vertical'}
                 length={components.length}
                 currIdx={slideState.currentIdx}
                 clickHandler={updateSlideState}
             />
 
-            <Slide direction="up" in={!slideState.isSwitching} timeout={transSpeed}>
+            <Slide direction={isSmallScreen ? 'left' : 'up'} in={!slideState.isSwitching} timeout={transSpeed}>
                 <Box sx={{ ...slideStyle, zIndex: 2 }}>
                     {components[slideState.currentIdx]}
                 </Box>

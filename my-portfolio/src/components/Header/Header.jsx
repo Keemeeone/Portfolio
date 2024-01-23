@@ -40,7 +40,7 @@ const Header = ({ currIdx, clickHandler }) => {
         {/* Navigation Buttons */}
         {navigationButtons.map(({ label, component: Component }, idx) => (
           <React.Fragment key={idx}>
-            <Button color="inherit" onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block' ,lg: 'block' } }}>
+            <Button color="inherit" onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' } }}>
               {label}
             </Button>
             <HeaderSlide
@@ -55,7 +55,7 @@ const Header = ({ currIdx, clickHandler }) => {
           anchorEl={menuAnchor}
           open={Boolean(menuAnchor)}
           onClose={closeMenu}
-          sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none'} }}
+          sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' } }}
         >
           {navigationButtons.map(({ label }, idx) => (
             <MenuItem key={idx} onClick={() => { clickHandler(idx); closeMenu(); }}>
