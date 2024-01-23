@@ -11,8 +11,8 @@ const Header = () => {
   return (
     <AppBar position="fixed" color="transparent" elevation={0}>
       <Toolbar>
-        <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
-          My Portfolio
+        <Typography variant="h5" component={Link} to="/" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+          PORTFOLIO
         </Typography>
         <Button component={Link} to={Project} color="inherit">
           Projects

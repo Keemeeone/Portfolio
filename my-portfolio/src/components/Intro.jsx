@@ -1,19 +1,18 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
-import { Parallax } from "react-parallax";
+import { Container, Typography, Avatar } from "@mui/material";
 
 const Intro = () => {
   return (
-    <Parallax bgImage="/developer.GIF" strength={500} style={{ height: "100%" }}>
-      <Container id="intro">
-        <Typography variant="h2" align="center" mt={5} mb={3}>
-          Welcome to My Portfolio
-        </Typography>
-        <Typography variant="body1" align="center" color="textSecondary" paragraph>
-          Hi, I'm a passionate front-end developer. Explore my projects and skills to learn more about my work.
-        </Typography>
-      </Container>
-    </Parallax>
+    <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>
+      {/* Add your profile picture here */}
+      <Avatar alt="Heewon's Chracter" src="/developer.png" sx={{ width: 250, height: 250 }} />
+      <Typography variant="h1" fontWeight={"bold"} color="textpPimary" align="center" mt={3} mb={3}>
+        Heewon Kim
+      </Typography>
+      <Typography variant="body1" align="center" color="textSecondary" paragraph>
+        Hi, I'm a passionate Software Developer. Explore my projects and skills to learn more about my work.
+      </Typography>
+    </Container>
   );
 };
 

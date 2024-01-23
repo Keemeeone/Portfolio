@@ -3,6 +3,7 @@ import React from "react";
 const Main = ({ children }) => {
     const mainStyle = {
         maxHeight:'100%',
+        maxWidth:'100%',
         marginTop: '50px', // Add your desired margin-top value
     };
 
