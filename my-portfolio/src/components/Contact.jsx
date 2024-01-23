@@ -7,8 +7,16 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Contact = () => {
     return (
-        <Container id="contact">
-            <Typography variant="h2" align="center" mt={5} mb={3}>
+        <Container
+            id="intro"
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+            }}
+        >               <Typography variant="h2" fontWeight={"bold"} align="center" mb={5}>
                 Contact
             </Typography>
 
@@ -21,7 +29,7 @@ const Contact = () => {
                         primary={
                             <>
                                 <Typography variant="h6">Email</Typography>
-                                <Typography variant="body1">your.email@example.com</Typography>
+                                <Typography variant="body1">khw0285@gmail.com</Typography>
                             </>
                         }
                     />
@@ -35,7 +43,7 @@ const Contact = () => {
                         primary={
                             <>
                                 <Typography variant="h6">Phone</Typography>
-                                <Typography variant="body1">+1 (123) 456-7890</Typography>
+                                <Typography variant="body1">+1 (608) 471-8707</Typography>
                             </>
                         }
                     />
@@ -50,7 +58,7 @@ const Contact = () => {
                             <>
                                 <Typography variant="h6">LinkedIn</Typography>
                                 <Typography variant="body1">
-                                    <Button href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank">
+                                    <Button href="https://www.linkedin.com/in/heewon-kim-hkim/" target="_blank">
                                         Connect on LinkedIn
                                     </Button>
                                 </Typography>
@@ -68,7 +76,7 @@ const Contact = () => {
                             <>
                                 <Typography variant="h6">GitHub</Typography>
                                 <Typography variant="body1">
-                                    <Button href="https://github.com/your-github-profile" target="_blank">
+                                    <Button href="https://github.com/Keemeeone" target="_blank">
                                         Visit GitHub Profile
                                     </Button>
                                 </Typography>

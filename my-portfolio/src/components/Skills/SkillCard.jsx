@@ -79,9 +79,9 @@ const SkillCard = ({ skill }) => {
                 backgroundColor: color,
             }}
         >
-            <Card variant="outlined">
+            <Card variant="outlined" sx={{ width: '80%', height: '100%', padding: '1px' }}>
                 <CardContent>
-                    <Typography variant="body1" fontWeight={"bold"} textAlign={"center"}>
+                    <Typography fontWeight={"bold"} textAlign={"center"} sx={{ fontSize: { xs: '6px', sm: '8px', md: '14px' } }}>
                         {skill}
                     </Typography>
                 </CardContent>

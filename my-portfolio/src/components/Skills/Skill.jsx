@@ -29,8 +29,8 @@ const Skill = () => {
 
             <Grid container spacing={1}>
                 {skillsData.map((category, index) => (
-                    <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Typography variant="h6" color={"GrayText"} mb={2} textAlign={"center"}>
+                    <Grid item key={index} xs={4} sm={6} md={4}>
+                        <Typography color={"GrayText"} mb={2} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
                             {category.category}
                         </Typography>
                         <Grid container spacing={1}>
