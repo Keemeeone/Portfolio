@@ -1,9 +1,8 @@
 import React from "react";
 import Slides from './Slides';
 
-import Header from "../Header";
 import Intro from "../Intro";
-import Skill from "../Skill";
+import Skill from "../Skills/Skill";
 import Resume from "../Resume";
 import Project from "../Project";
 import Contact from "../Contact";
@@ -13,7 +12,6 @@ import Main from "../Main";
 const Home = () => {
     return (
         <>
-            <Header />
             <Main>
             <Slides components={[
                 <Intro />,

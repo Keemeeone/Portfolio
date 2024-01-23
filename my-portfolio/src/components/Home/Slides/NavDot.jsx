@@ -2,18 +2,19 @@ import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 
 /**
- * Functional component for a circle in Slide's NavBar.
- * Supports quick navigation for the Slide component.
- * 
- * @author Hyecheol (Jerry) Jang <hyecheol123@gmail.com>
+ * Functional component representing a navigation circle in the Slide's NavBar.
+ * Enables quick navigation within the Slide component.
  * 
  * @param {Object} props - Properties passed from the parent component.
- * @param {boolean} props.isCurrent - Indicates if the circle is the current one.
+ * @param {boolean} props.isCurrent - Indicates whether the circle is the current one.
  * @param {number} props.thisIdx - Index of the circle.
- * @param {function} props.clickHandler - Click handler function.
- * @return {React.ReactElement} - Renders a circle for navigation.
+ * @param {function} props.clickHandler - Function to handle click events.
+ * @returns {React.ReactElement} - Renders a circular navigation element.
  */
-const NavBarCircle = ({ isCurrent, thisIdx, clickHandler }) => {
+const NavDot = ({ isCurrent, thisIdx, clickHandler }) => {
+  /**
+   * Memoized style object for the circle.
+   */
   const style = useMemo(() => ({
     width: '16px',
     height: '16px',
@@ -32,4 +33,4 @@ const NavBarCircle = ({ isCurrent, thisIdx, clickHandler }) => {
   );
 };
 
-export default React.memo(NavBarCircle);
+export default React.memo(NavDot);
