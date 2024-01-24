@@ -14,16 +14,13 @@ const Contact = () => {
     return (
         <ThemeProvider theme={responsiveTheme}>
                 <Container
-                    id="intro"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "100%",
+                        // alignItems: "center",
                     }}
                 >
-                    <Typography fontWeight={"bold"} variant="h2" mt={15} sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                    <Typography fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                         Contact
                     </Typography>
 

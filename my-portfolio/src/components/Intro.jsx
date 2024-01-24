@@ -20,8 +20,8 @@ const Intro = () => {
 
     return (
         <ThemeProvider theme={responsiveTheme}>
-                <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
-                    <Typography variant="h3" fontWeight={"bold"} color="textPrimary" align="center" mt={15} mb={3}>
+                <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop:"12.5vh"}}>
+                    <Typography variant="h3" fontWeight={"bold"} color="textPrimary" align="center" mb={3}>
                         Hello, I'm
                     </Typography>
                     <Avatar

@@ -64,11 +64,8 @@ const Project = () => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container
-                sx={{
-                    justifyContent: "center",
-                }}
             >
-                <Typography fontWeight={"bold"} variant="h2" mb={3} mt={15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     Projects
                 </Typography>
 
