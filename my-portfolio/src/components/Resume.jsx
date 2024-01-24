@@ -85,7 +85,7 @@ const Resume = () => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography fontWeight={"bold"} variant="h2" mt={5} mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "2em", textAlign: "center" }}>
+                <Typography fontWeight={"bold"} variant="h2" mt={5} mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
                     Resume
                 </Typography>
 

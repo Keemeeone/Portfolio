@@ -46,37 +46,48 @@ const Slides = (props) => {
 
     const scrollTimeout = useRef(null);
     const acceptScroll = useRef(true);
-    const deltaY = useRef(0);
+    let deltaY = 0;
+    let prevY = -1;
 
     const resetScroll = () => {
         scrollTimeout.current = undefined;
         acceptScroll.current = true;
-        deltaY.current = 0;
+        deltaY = 0;
     };
 
     const handleScrollTimeout = () => {
-        if (deltaY.current > 50 && slideState.currentIdx < components.length - 1) {
+        if (deltaY > 50 && slideState.currentIdx < components.length - 1) {
             updateSlideState(slideState.currentIdx + 1);
-        } else if (deltaY.current < -50 && slideState.currentIdx > 0) {
+            console.log(deltaY)
+        } else if (deltaY < -50 && slideState.currentIdx > 0) {
             updateSlideState(slideState.currentIdx - 1);
+
+            console.log(deltaY)
         }
 
         window.setTimeout(resetScroll, 40);
     };
 
     const handleScrollEvent = (e) => {
-        if (acceptScroll.current) {
-            if (scrollTimeout.current) {
-                clearTimeout(scrollTimeout.current);
-            }
-            scrollTimeout.current = window.setTimeout(handleScrollTimeout, 40);
 
-            if (e.type === 'wheel') {
-                deltaY.current += e.deltaY;
-            } else {
-                deltaY.current += e.targetTouches[0].clientY - (e.targetTouches[1]?.clientY || 0);
-            }
+        if (scrollTimeout.current) {
+            clearTimeout(scrollTimeout.current);
         }
+        scrollTimeout.current = window.setTimeout(handleScrollTimeout, 40);
+
+        if (e.type === 'wheel') {
+            deltaY += e.deltaY;
+            // console.log("working")
+        } else {
+            const y = e.targetTouches[0].clientY;
+            // console.log("working")
+            if (prevY !== -1) {
+                deltaY += prevY - y;
+            }
+            prevY = y
+        }
+
+
     };
 
     const slideStyle = {
