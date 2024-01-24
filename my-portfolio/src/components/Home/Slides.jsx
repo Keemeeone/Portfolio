@@ -1,148 +1,72 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Box, Slide, useMediaQuery, useTheme } from '@mui/material';
-import NavBar from './Slides/NavBar';
-import Header from '../Header/Header';
+import React, { useState, useEffect, useRef } from "react";
+import Header from "../Header/Header";
 
-const Slides = (props) => {
-    const { components } = props;
-    const transSpeed = 500;
+const Scroll = ({ components }) => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
-    const [slideState, setSlideState] = useState({
-        currentIdx: 0,
-        previousIdx: 0,
-        isSwitching: false,
-    });
+    const scrollRef = useRef();
 
-    const containerRef = useRef(null);
+    const handleScroll = () => {
+        const scrollTop = scrollRef.current.scrollTop;
+        const componentHeight = scrollRef.current.clientHeight;
+
+        const newIndex = Math.floor(scrollTop / componentHeight);
+        setActiveIndex(newIndex);
+
+        // 스크롤 위치 업데이트
+        setScrollPosition(scrollTop);
+    };
 
     useEffect(() => {
-        setSlideState(prevState => ({
-            ...prevState,
-            currentIdx: 0,
-            previousIdx: 0,
-        }));
-    }, [components]);
+        const handleResize = () => {
+            const componentHeight = scrollRef.current.clientHeight;
+            const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
+            setActiveIndex(newIndex);
+        };
 
-    const updateSlideState = useCallback(
-        (newIdx) => {
-            setSlideState((prevState) => ({
-                ...prevState,
-                previousIdx: prevState.currentIdx,
-                isSwitching: true,
-            }));
+        window.addEventListener("resize", handleResize);
 
-            window.setTimeout(() => {
-                setSlideState((prevState) => ({
-                    ...prevState,
-                    isSwitching: false,
-                    currentIdx: newIdx,
-                }));
-            }, transSpeed);
-        },
-        [transSpeed]
-    );
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
-    const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('sm'));
-    console.log(isSmallScreen)
-
-    const scrollTimeout = useRef(null);
-    const acceptScroll = useRef(true);
-    let deltaY = 0;
-    let prevY = -1;
-    let deltaX = 0;
-    let prevX = -1;
-
-    const resetScroll = () => {
-        scrollTimeout.current = undefined;
-        acceptScroll.current = true;
-        deltaY = 0;
-        deltaX = 0;
+    const scrollToComponent = (index) => {
+        const componentHeight = scrollRef.current.clientHeight;
+        scrollRef.current.scrollTo({
+            top: index * componentHeight,
+            behavior: "smooth",
+        });
     };
 
-    const handleScrollTimeout = () => {
-        if ((deltaY > 50 && slideState.currentIdx < components.length - 1) || (deltaX > 50 && slideState.currentIdx < components.length - 1)) {
-            updateSlideState(slideState.currentIdx + 1);
-            console.log(deltaY)
-        } else if ((deltaY < -50 && slideState.currentIdx > 0) || (deltaX < -50 && slideState.currentIdx > 0)) {
-            updateSlideState(slideState.currentIdx - 1);
-
-            console.log(deltaY)
-        }
-
-        window.setTimeout(resetScroll, 40);
+    const updateSlideState = (index) => {
+        scrollToComponent(index);
     };
-
-    const handleScrollEvent = (e) => {
-
-        if (scrollTimeout.current) {
-            clearTimeout(scrollTimeout.current);
-        }
-        scrollTimeout.current = window.setTimeout(handleScrollTimeout, 40);
-
-        if (e.type === 'wheel') {
-            if (!isSmallScreen) {
-                deltaY += e.deltaY;
-            } else {
-                deltaX += e.deltaX;
-            }
-        } else {
-            if (!isSmallScreen) {
-                const y = e.targetTouches[0].clientY;
-                if (prevY !== -1) {
-                    deltaY += prevY - y;
-                }
-                prevY = y;
-            } else {
-                const x = e.targetTouches[0].clientX;
-                if (prevX !== -1) {
-                    deltaX += prevX - x;
-                }
-                prevX = x;
-            }
-
-        }
-
-
-    };
-
-    const slideStyle = {
-        width: '100%',
-        height: '100%',
-        position: 'fixed',
-    };
-
-    const containerStyle = {
-        overflowY: 'hidden',
-    };
-
 
     return (
-        <Box
-            ref={containerRef}
-            sx={{ overscrollBehavior: 'none', ...containerStyle }}
-            onWheel={handleScrollEvent}
-            onTouchMove={handleScrollEvent}
+        <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            style={{
+                height: "100vh",
+                overflowY: "scroll",
+                scrollBehavior: "smooth",
+            }}
         >
             <Header
-                orientation={isSmallScreen ? 'horizontal' : 'vertical'}
+                orientation={'vertical'}
                 length={components.length}
-                currIdx={slideState.currentIdx}
+                currIdx={activeIndex}
                 clickHandler={updateSlideState}
             />
-            <NavBar
-                orientation={isSmallScreen ? 'horizontal' : 'vertical'}
-                length={components.length}
-                currIdx={slideState.currentIdx}
-                clickHandler={updateSlideState}
-            />
-
-            <Slide direction={isSmallScreen ? 'left' : 'up'} in={!slideState.isSwitching} timeout={transSpeed}>
-                <Box sx={{ ...slideStyle, zIndex: 2 }}>
-                    {components[slideState.currentIdx]}
-                </Box>
-            </Slide>
-        </Box>
+            {components.map((component, index) => (
+                <div key={index} style={{ height: "100vh" }}>
+                    {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition })}
+                </div>
+            ))}
+        </div>
     );
 };
 
-export default Slides;
+export default Scroll;

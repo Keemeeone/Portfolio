@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Container, Typography, Divider, Box, Button, useMediaQuery, useTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
 import { useSpring, animated } from "react-spring";
 
@@ -55,9 +55,52 @@ const educationData = [
 const Resume = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-    // Apply responsiveFontSizes to the theme
     const responsiveTheme = responsiveFontSizes(theme);
+
+    const domTarget = useRef(null);
+    const [springProps, set] = useSpring(() => ({ opacity: 0 }));
+
+    const debounce = (func, delay) => {
+        let timeout;
+        return function () {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
+
+    useEffect(() => {
+        const handleScroll = debounce(() => {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.8,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const newOpacity = Math.min(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
+                        set({ opacity: newOpacity });
+                    } else {
+                        set({ opacity: 0 });
+                    }
+                });
+            }, options);
+
+            if (domTarget.current) {
+                observer.observe(domTarget.current);
+            }
+        }, 100); // 200ms 디바운스 지연 시간
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [set, domTarget]);
 
     const fadeIn = useSpring({
         opacity: 1,
@@ -84,57 +127,60 @@ const Resume = () => {
 
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <Container>
-                <Typography fontWeight={"bold"} variant="h2" mt={5} mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
-                    Resume
-                </Typography>
+            <animated.div
+                ref={domTarget}
+                style={{
+                    opacity: springProps.opacity,
+                    transition: "opacity 0.5s ease",
+                }}
+            >
+                <Container>
+                    <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
+                        Resume
+                    </Typography>
 
-                <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
-                    Experiences
-                </Typography>
-                <Divider mb={2} />
+                    <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
+                        Experiences
+                    </Typography>
+                    <Divider mb={2} />
 
-                {experienceData.map((experience, index) => (
-                    <AnimatedBox key={index} style={fadeIn} mb={3}>
-                        <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
-                            {experience.title}
-                        </Typography>
-                        <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
-                            {experience.company} | {experience.year}
-                        </Typography>
-                        {experience.description.map((point, i) => (
-                            <Typography key={i} variant="body1" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
-                                {point}
+                    {experienceData.map((experience, index) => (
+                        <AnimatedBox key={index} style={fadeIn} mb={3}>
+                            <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
+                                {experience.title}
                             </Typography>
-                        ))}
-                    </AnimatedBox>
-                ))}
-                {!isSmallScreen &&
-                    <>
-                        <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
-                            Education
-                        </Typography>
-                        <Divider mb={2} />
-
-                        {educationData.map((education, index) => (
-                            <AnimatedBox key={index} style={fadeIn} mb={3}>
-                                <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
-                                    {education.degree}
+                            <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                                {experience.company} | {experience.year}
+                            </Typography>
+                            {experience.description.map((point, i) => (
+                                <Typography key={i} variant="body1" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                                    {point}
                                 </Typography>
-                                <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
-                                    {education.school} | {education.year}
-                                </Typography>
-                            </AnimatedBox>
-                        ))}
-                    </>
-                }
+                            ))}
+                        </AnimatedBox>
+                    ))}
 
+                    <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
+                        Education
+                    </Typography>
+                    <Divider mb={2} />
 
+                    {educationData.map((education, index) => (
+                        <AnimatedBox key={index} style={fadeIn} mb={3}>
+                            <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
+                                {education.degree}
+                            </Typography>
+                            <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                                {education.school} | {education.year}
+                            </Typography>
+                        </AnimatedBox>
+                    ))}
+                    <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
+                        Download Resume
+                    </Button>
 
-                <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
-                    Download Resume
-                </Button>
-            </Container>
+                </Container>
+            </animated.div>
         </ThemeProvider>
     );
 };
