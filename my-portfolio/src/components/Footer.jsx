@@ -5,13 +5,13 @@ const Footer = () => {
 
     const footerStyle = {
         position: 'fixed',
-        bottom: 0,
+        bottom: 30,
         width: '100%',
     };
 
     return (
-        <Box sx={footerStyle}>
-            <Container component="footer" mt={5} py={3} bgcolor="primary.main" color="white">
+        <Box sx={footerStyle} >
+            <Container component="footer" py={3} bgcolor="primary.main" color="white">
                 <Typography variant="body2" align="center">
                     &copy; 2024 Heewon Kim. All rights reserved.
                 </Typography>

@@ -1,14 +1,8 @@
 import React from "react";
 
 const Main = ({ children }) => {
-    const mainStyle = {
-        maxHeight: '100%',
-        maxWidth: '100%',
-        marginTop: '20px',
-    };
-
     return (
-        <main id="main" role="main" style={mainStyle}>
+        <main id="main" role="main">
             {children}
         </main>
     );

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
 import { useGesture } from "react-use-gesture";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, useTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
 
 const calcX = (y, ly) => -(y - ly - window.innerHeight / 2) / 20;
 const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20;
@@ -16,6 +16,9 @@ const getRandomColor = () => {
 };
 
 const SkillCard = ({ skill }) => {
+    const theme = useTheme();
+    const responsiveTheme = responsiveFontSizes(theme);
+    
     const domTarget = useRef(null);
 
     const [{ x, y, rotateX, rotateY, rotateZ, zoom, scale, color }, api] = useSpring(() => ({
@@ -47,7 +50,6 @@ const SkillCard = ({ skill }) => {
             onHover: ({ hovering }) =>
                 !hovering && api({ rotateX: 0, rotateY: 0, scale: 1 }),
             onWheel: ({ event, offset: [, y] }) => {
-                event.preventDefault();
                 wheelApi.set({ wheelY: y });
             },
         },
@@ -66,6 +68,7 @@ const SkillCard = ({ skill }) => {
     }, []);
 
     return (
+        <ThemeProvider theme={responsiveTheme}>
         <animated.div
             ref={domTarget}
             style={{
@@ -79,14 +82,15 @@ const SkillCard = ({ skill }) => {
                 backgroundColor: color,
             }}
         >
-            <Card variant="outlined" sx={{ width: '80%', height: '100%', padding: '1px' }}>
+            <Card variant="outlined" sx={{ width: '90%', height: '100%'}}>
                 <CardContent>
-                    <Typography fontWeight={"bold"} textAlign={"center"} sx={{ fontSize: { xs: '6px', sm: '8px', md: '14px' } }}>
+                    <Typography fontWeight={"bold"} sx={{marginLeft:{ xs: '-15px', sm: '-5px', md: 'px' }, fontSize: { xs: '8px', sm: '8px', md: '16px' } }}>
                         {skill}
                     </Typography>
                 </CardContent>
             </Card>
         </animated.div>
+        </ThemeProvider>
     );
 };
 

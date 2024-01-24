@@ -1,8 +1,5 @@
 import React from "react";
 import { Container, Typography, Divider, Box, Button, useMediaQuery, useTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
-import { useSpring, animated } from "react-spring";
-
-const AnimatedBox = animated(Box);
 
 const experienceData = [
     {
@@ -49,21 +46,12 @@ const educationData = [
         degree: "Madison Area Technical College",
         year: "Sept 2019 - Dec 2020",
     },
-    // Add more education details as needed
 ];
 
 const Resume = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-    // Apply responsiveFontSizes to the theme
     const responsiveTheme = responsiveFontSizes(theme);
-
-    const fadeIn = useSpring({
-        opacity: 1,
-        from: { opacity: 0 },
-        config: { duration: 1500 },
-    });
 
     const handleDownload = () => {
         // Replace the following line with your actual resume file URL or download logic
@@ -85,55 +73,50 @@ const Resume = () => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography fontWeight={"bold"} variant="h2" mt={5} mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
+                <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     Resume
                 </Typography>
 
-                <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
+                <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
                     Experiences
                 </Typography>
                 <Divider mb={2} />
 
                 {experienceData.map((experience, index) => (
-                    <AnimatedBox key={index} style={fadeIn} mb={3}>
-                        <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
+                    <Box key={index} mb={3}>
+                        <Typography variant="h6" style={{ fontSize: isSmallScreen ? "0.75em" : "1.2em" }}>
                             {experience.title}
                         </Typography>
-                        <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                        <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.7em" : "1em" }}>
                             {experience.company} | {experience.year}
                         </Typography>
                         {experience.description.map((point, i) => (
-                            <Typography key={i} variant="body1" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                            <Typography key={i} variant="body1" style={{ fontSize: isSmallScreen ? "0.7em" : "1em" }}>
                                 {point}
                             </Typography>
                         ))}
-                    </AnimatedBox>
+                    </Box>
                 ))}
-                {!isSmallScreen &&
-                    <>
-                        <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
-                            Education
+
+                <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
+                    Education
+                </Typography>
+                <Divider mb={2} />
+
+                {educationData.map((education, index) => (
+                    <Box key={index} mb={3}>
+                        <Typography variant="h6" style={{ fontSize: isSmallScreen ? "0.75em" : "1.2em" }}>
+                            {education.degree}
                         </Typography>
-                        <Divider mb={2} />
-
-                        {educationData.map((education, index) => (
-                            <AnimatedBox key={index} style={fadeIn} mb={3}>
-                                <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
-                                    {education.degree}
-                                </Typography>
-                                <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
-                                    {education.school} | {education.year}
-                                </Typography>
-                            </AnimatedBox>
-                        ))}
-                    </>
-                }
-
-
-
+                        <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>
+                            {education.school} | {education.year}
+                        </Typography>
+                    </Box>
+                ))}
                 <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
                     Download Resume
                 </Button>
+
             </Container>
         </ThemeProvider>
     );

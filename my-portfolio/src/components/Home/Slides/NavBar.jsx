@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 import NavDot from './NavDot';
-
+ 
 /**
  * Functional component for Slide's NavBar.
  * 

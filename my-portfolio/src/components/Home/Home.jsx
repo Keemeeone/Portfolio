@@ -6,7 +6,6 @@ import Skill from "../Skills/Skill";
 import Resume from "../Resume";
 import Project from "../Project";
 import Contact from "../Contact";
-import Footer from "../Footer";
 import Main from "../Main";
 
 const Home = () => {
@@ -21,7 +20,6 @@ const Home = () => {
                 <Contact />,
             ]} />
             </Main>
-            <Footer />
         </>
     );
 };
