@@ -90,7 +90,7 @@ const Resume = () => {
                 </Typography>
 
                 <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
-                    Experience
+                    Experiences
                 </Typography>
                 <Divider mb={2} />
 
@@ -109,22 +109,27 @@ const Resume = () => {
                         ))}
                     </AnimatedBox>
                 ))}
-
-                <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
-                    Education
-                </Typography>
-                <Divider mb={2} />
-
-                {educationData.map((education, index) => (
-                    <AnimatedBox key={index} style={fadeIn} mb={3}>
-                        <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
-                            {education.degree}
+                {!isSmallScreen &&
+                    <>
+                        <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "1.2em" : "1.5em" }}>
+                            Education
                         </Typography>
-                        <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
-                            {education.school} | {education.year}
-                        </Typography>
-                    </AnimatedBox>
-                ))}
+                        <Divider mb={2} />
+
+                        {educationData.map((education, index) => (
+                            <AnimatedBox key={index} style={fadeIn} mb={3}>
+                                <Typography variant="h6" style={{ fontSize: isSmallScreen ? "1em" : "1.2em" }}>
+                                    {education.degree}
+                                </Typography>
+                                <Typography variant="subtitle2" color="textSecondary" style={{ fontSize: isSmallScreen ? "0.8em" : "1em" }}>
+                                    {education.school} | {education.year}
+                                </Typography>
+                            </AnimatedBox>
+                        ))}
+                    </>
+                }
+
+
 
                 <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
                     Download Resume

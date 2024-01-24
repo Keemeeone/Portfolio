@@ -16,7 +16,7 @@ const Slides = (props) => {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        setSlideState((prevState) => ({
+        setSlideState(prevState => ({
             ...prevState,
             currentIdx: 0,
             previousIdx: 0,
@@ -43,23 +43,27 @@ const Slides = (props) => {
     );
 
     const isSmallScreen = useMediaQuery(useTheme().breakpoints.down('sm'));
+    console.log(isSmallScreen)
 
     const scrollTimeout = useRef(null);
     const acceptScroll = useRef(true);
     let deltaY = 0;
     let prevY = -1;
+    let deltaX = 0;
+    let prevX = -1;
 
     const resetScroll = () => {
         scrollTimeout.current = undefined;
         acceptScroll.current = true;
         deltaY = 0;
+        deltaX = 0;
     };
 
     const handleScrollTimeout = () => {
-        if (deltaY > 50 && slideState.currentIdx < components.length - 1) {
+        if ((deltaY > 50 && slideState.currentIdx < components.length - 1) || (deltaX > 50 && slideState.currentIdx < components.length - 1)) {
             updateSlideState(slideState.currentIdx + 1);
             console.log(deltaY)
-        } else if (deltaY < -50 && slideState.currentIdx > 0) {
+        } else if ((deltaY < -50 && slideState.currentIdx > 0) || (deltaX < -50 && slideState.currentIdx > 0)) {
             updateSlideState(slideState.currentIdx - 1);
 
             console.log(deltaY)
@@ -76,15 +80,26 @@ const Slides = (props) => {
         scrollTimeout.current = window.setTimeout(handleScrollTimeout, 40);
 
         if (e.type === 'wheel') {
-            deltaY += e.deltaY;
-            // console.log("working")
-        } else {
-            const y = e.targetTouches[0].clientY;
-            // console.log("working")
-            if (prevY !== -1) {
-                deltaY += prevY - y;
+            if (!isSmallScreen) {
+                deltaY += e.deltaY;
+            } else {
+                deltaX += e.deltaX;
             }
-            prevY = y
+        } else {
+            if (!isSmallScreen) {
+                const y = e.targetTouches[0].clientY;
+                if (prevY !== -1) {
+                    deltaY += prevY - y;
+                }
+                prevY = y;
+            } else {
+                const x = e.targetTouches[0].clientX;
+                if (prevX !== -1) {
+                    deltaX += prevX - x;
+                }
+                prevX = x;
+            }
+
         }
 
 
@@ -99,6 +114,7 @@ const Slides = (props) => {
     const containerStyle = {
         overflowY: 'hidden',
     };
+
 
     return (
         <Box
