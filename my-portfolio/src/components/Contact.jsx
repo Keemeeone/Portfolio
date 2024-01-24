@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import { useSpring, animated } from "@react-spring/web";
+import React from "react";
 import { Container, Typography, List, ListItem, ListItemIcon, ListItemText, Button, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
 import Footer from "./Footer";
 import EmailIcon from "@mui/icons-material/Email";
@@ -12,50 +11,8 @@ const Contact = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
-    const domTarget = useRef(null);
-    const [springProps, set] = useSpring(() => ({ opacity: 0 }));
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.4,
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const newOpacity = Math.max(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
-                        set({ opacity: newOpacity });
-                    } else {
-                        set({ opacity: 0 });
-                    }
-                });
-            }, options);
-
-            if (domTarget.current) {
-                observer.observe(domTarget.current);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [set, domTarget]);
-
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <animated.div
-                ref={domTarget}
-                style={{
-                    opacity: springProps.opacity,
-                    transition: "opacity 0.5s ease",
-                }}
-            >
                 <Container
                     id="intro"
                     sx={{
@@ -137,7 +94,6 @@ const Contact = () => {
                     </List>
                 </Container>
                 <Footer />
-            </animated.div>
         </ThemeProvider>
     );
 };

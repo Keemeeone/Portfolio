@@ -7,37 +7,61 @@ const Scroll = ({ components }) => {
 
     const scrollRef = useRef();
 
-    const handleScroll = () => {
-        const scrollTop = scrollRef.current.scrollTop;
-        const componentHeight = scrollRef.current.clientHeight;
-
-        const newIndex = Math.floor(scrollTop / componentHeight);
-        setActiveIndex(newIndex);
-
-        // 스크롤 위치 업데이트
-        setScrollPosition(scrollTop);
-    };
-
     useEffect(() => {
         const handleResize = () => {
-            const componentHeight = scrollRef.current.clientHeight;
-            const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
-            setActiveIndex(newIndex);
+            if (scrollRef.current) {
+                const componentHeight = scrollRef.current.clientHeight;
+                const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
+                setActiveIndex(newIndex);
+            }
         };
 
-        window.addEventListener("resize", handleResize);
+        if (scrollRef.current) {
+            window.addEventListener("resize", handleResize);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+            return () => {
+                window.removeEventListener("resize", handleResize);
+            };
+        }
     }, []);
 
+    const handleScroll = () => {
+        if (scrollRef.current) {
+            const scrollTop = scrollRef.current.scrollTop;
+            const componentHeight = scrollRef.current.clientHeight;
+
+            const newIndex = Math.floor(scrollTop / componentHeight);
+            setActiveIndex(newIndex);
+
+            // 스크롤 위치 업데이트
+            setScrollPosition(scrollTop);
+        }
+    };
+
+    const calculateOpacity = (index) => {
+        if (scrollRef.current) {
+            const componentHeight = scrollRef.current.clientHeight;
+            const distanceToComponent = Math.abs(scrollPosition - index * componentHeight);
+            const maxDistance = componentHeight * 0.5;
+
+            // Calculate opacity based on the distance to the component
+            const opacity = 1 - Math.min(distanceToComponent / maxDistance, 1);
+
+            return opacity;
+        }
+
+        // Default opacity if scrollRef.current is undefined
+        return 1;
+    };
+
     const scrollToComponent = (index) => {
-        const componentHeight = scrollRef.current.clientHeight;
-        scrollRef.current.scrollTo({
-            top: index * componentHeight,
-            behavior: "smooth",
-        });
+        if (scrollRef.current) {
+            const componentHeight = scrollRef.current.clientHeight;
+            scrollRef.current.scrollTo({
+                top: index * componentHeight,
+                behavior: "smooth",
+            });
+        }
     };
 
     const updateSlideState = (index) => {
@@ -61,7 +85,14 @@ const Scroll = ({ components }) => {
                 clickHandler={updateSlideState}
             />
             {components.map((component, index) => (
-                <div key={index} style={{ height: "100vh" }}>
+                <div
+                    key={index}
+                    style={{
+                        height: "100vh",
+                        opacity: calculateOpacity(index),
+                        transition: "opacity 0.2s ease-in-out",
+                    }}
+                >
                     {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition })}
                 </div>
             ))}

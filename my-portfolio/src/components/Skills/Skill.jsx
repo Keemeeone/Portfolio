@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { useSpring, animated } from "@react-spring/web";
+import React from "react";
 import SkillCard from "./SkillCard";
 import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
 
@@ -17,82 +16,39 @@ const Skill = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
-    const domTarget = useRef(null);
-    const [springProps, set] = useSpring(() => ({ opacity: 0 }));
-    
-    useEffect(() => {
-        const handleScroll = () => {
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.8,
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const newOpacity = Math.max(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
-                        set({ opacity: newOpacity });
-                    } else {
-                        set({ opacity: 0 });
-                    }
-                });
-            }, options);
-
-            if (domTarget.current) {
-                observer.observe(domTarget.current);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [set, domTarget]);
-
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <animated.div
-                ref={domTarget}
-                style={{
-                    opacity: springProps.opacity,
-                    transition: "opacity 0.3s ease",
+            <Container
+                id="intro"
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
                 }}
             >
-                <Container
-                    id="intro"
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "100%",
-                    }}
-                >
-                    <Typography fontWeight={"bold"} variant="h2" mb={3} mt={15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                        Skills
-                    </Typography>
+                <Typography fontWeight={"bold"} variant="h2" mb={3} mt={15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                    Skills
+                </Typography>
 
-                    <Grid container spacing={1}>
-                        {skillsData.map((category, index) => (
-                            <Grid item key={index} xs={4} sm={6} md={4}>
-                                <Typography color={"GrayText"} mb={2} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
-                                    {category.category}
-                                </Typography>
-                                <Grid container spacing={1}>
-                                    {category.skills.map((skill, skillIndex) => (
-                                        <Grid item key={skillIndex} xs={6} sm={4} md={6}>
-                                            <SkillCard skill={skill} />
-                                        </Grid>
-                                    ))}
-                                </Grid>
+                <Grid container spacing={1}>
+                    {skillsData.map((category, index) => (
+                        <Grid item key={index} xs={4} sm={6} md={4}>
+                            <Typography color={"GrayText"} mb={2} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
+                                {category.category}
+                            </Typography>
+                            <Grid container spacing={1}>
+                                {category.skills.map((skill, skillIndex) => (
+                                    <Grid item key={skillIndex} xs={6} sm={4} md={6}>
+                                        <SkillCard skill={skill} />
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </animated.div>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Container>
         </ThemeProvider>
     );
 };
