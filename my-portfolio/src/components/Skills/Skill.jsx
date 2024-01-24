@@ -19,30 +19,19 @@ const Skill = () => {
 
     const domTarget = useRef(null);
     const [springProps, set] = useSpring(() => ({ opacity: 0 }));
-
-    const debounce = (func, delay) => {
-        let timeout;
-        return function () {
-            const context = this;
-            const args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), delay);
-        };
-    };
-
-
+    
     useEffect(() => {
-        const handleScroll = debounce(() => {
+        const handleScroll = () => {
             const options = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.9,
+                threshold: 0.8,
             };
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const newOpacity = Math.min(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
+                        const newOpacity = Math.max(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
                         set({ opacity: newOpacity });
                     } else {
                         set({ opacity: 0 });
@@ -53,7 +42,7 @@ const Skill = () => {
             if (domTarget.current) {
                 observer.observe(domTarget.current);
             }
-        }, 150); // 200ms 디바운스 지연 시간
+        };
 
         window.addEventListener("scroll", handleScroll);
         handleScroll();
@@ -69,10 +58,11 @@ const Skill = () => {
                 ref={domTarget}
                 style={{
                     opacity: springProps.opacity,
-                    transition: "opacity 0.5s ease",
+                    transition: "opacity 0.3s ease",
                 }}
             >
                 <Container
+                    id="intro"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
@@ -81,7 +71,7 @@ const Skill = () => {
                         height: "100%",
                     }}
                 >
-                    <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
+                    <Typography fontWeight={"bold"} variant="h2" mb={3} mt={15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                         Skills
                     </Typography>
 

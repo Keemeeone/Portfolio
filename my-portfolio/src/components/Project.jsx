@@ -57,18 +57,8 @@ const Project = () => {
     const domTarget = useRef(null);
     const [springProps, set] = useSpring(() => ({ opacity: 0 }));
 
-    const debounce = (func, delay) => {
-        let timeout;
-        return function () {
-            const context = this;
-            const args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), delay);
-        };
-    };
-
     useEffect(() => {
-        const handleScroll = debounce(() => {
+        const handleScroll = () => {
             const options = {
                 root: null,
                 rootMargin: '0px',
@@ -78,7 +68,7 @@ const Project = () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const newOpacity = Math.min(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
+                        const newOpacity = Math.max(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
                         set({ opacity: newOpacity });
                     } else {
                         set({ opacity: 0 });
@@ -89,7 +79,7 @@ const Project = () => {
             if (domTarget.current) {
                 observer.observe(domTarget.current);
             }
-        }, 100); // 200ms 디바운스 지연 시간
+        };
 
         window.addEventListener("scroll", handleScroll);
         handleScroll();
@@ -102,7 +92,7 @@ const Project = () => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
-        }, 1500);
+        }, 2000);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -118,11 +108,10 @@ const Project = () => {
             >
                 <Container
                     sx={{
-
                         justifyContent: "center",
                     }}
                 >
-                    <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1em" : "3em", textAlign: "center" }}>
+                    <Typography fontWeight={"bold"} variant="h2" mb={3} mt={15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                         Projects
                     </Typography>
 
@@ -132,17 +121,16 @@ const Project = () => {
                         timeout={500}
                         navButtonsAlwaysVisible
                         indicators={false}
-                        height={"80vh"}
                     >
                         {projectsData.map((project, index) => (
-                            <Box key={index}>
-                                <img
+                            <Box key={index} sx={{ display: "flex", flexDirection:'column', justifyContent: "center", alignItems: "center" }}>
+                            <img
                                     alt={project.title}
                                     src={
                                         project.imageUrls[currentImageIndex] ||
                                         project.imageUrls[0]
                                     }
-                                    style={{ minHeight: "0", height: "50vh", minWidth: "0", width: "100%" }}
+                                    style={{ minHeight: "0", height: "100%", minWidth: "0", width: "100%", maxHeight:"50vh", maxWidth:"80%"}}
                                 />
                                 <Box sx={{ textAlign: "center" }}>
                                     <Typography

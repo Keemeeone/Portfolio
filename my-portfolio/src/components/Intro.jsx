@@ -22,7 +22,7 @@ const Intro = () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const newOpacity = Math.min(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
+                        const newOpacity = Math.max(1, Math.max(0, (window.innerHeight - entry.boundingClientRect.top) / (entry.boundingClientRect.height)));
                         set({ opacity: newOpacity });
                     } else {
                         set({ opacity: 0 });
@@ -41,7 +41,7 @@ const Intro = () => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [set, domTarget])
+    }, [set, domTarget]);
 
     useEffect(() => {
         // Apply initial pop effect when the component mounts
@@ -59,7 +59,7 @@ const Intro = () => {
                 ref={domTarget}
                 style={{
                     opacity: springProps.opacity,
-                    transition: "opacity 0.5s ease",
+                    transition: "opacity 0.3s ease",
                     display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%"
                 }}
             >
@@ -73,8 +73,8 @@ const Intro = () => {
                         sx={{
                             width: { xs: 150, sm: 200, md: 250 },
                             height: { xs: 150, sm: 200, md: 250 },
-                            transition: "transform 0.3s ease-in-out",
-                            transform: isHovered ? "scale(1.1)" : "scale(0.5)",
+                            transition: "transform 0.5s ease-in-out",
+                            transform: isHovered ? "scale(1.1)" : "scale(0.1)",
                             ":hover": {
                                 transform: "scale(1.1)",
                             },
