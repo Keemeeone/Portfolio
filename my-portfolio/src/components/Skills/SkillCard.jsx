@@ -1,7 +1,7 @@
 // SkillCard.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
-SPDX-License-Identifier: {$SPDX_license_name}
+SPDX-License-Identifier: MIT
 */
 
 import React, { useRef, useEffect } from "react";
@@ -17,19 +17,10 @@ const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20;
  * @param {Object} props - Props for the SkillCard component.
  * @param {string} props.skill - The skill to be displayed on the card.
  */
-const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
-
 const SkillCard = ({ skill }) => {
     const theme = useTheme();
     const responsiveTheme = responsiveFontSizes(theme);
-    
+
     const domTarget = useRef(null);
 
     const [{ x, y, rotateX, rotateY, rotateZ, zoom, scale, color }, api] = useSpring(() => ({
@@ -71,38 +62,56 @@ const SkillCard = ({ skill }) => {
         const preventDefault = (e) => e.preventDefault();
         document.addEventListener("gesturestart", preventDefault);
         document.addEventListener("gesturechange", preventDefault);
+        const colorChangeInterval = setInterval(() => {
+            api.start({ color: getRandomColor() });
+        }, 3000); // 3초마다 색상 변경
 
         return () => {
             document.removeEventListener("gesturestart", preventDefault);
             document.removeEventListener("gesturechange", preventDefault);
+            clearInterval(colorChangeInterval);
         };
-    }, []);
+    }, [api]);
 
     return (
         <ThemeProvider theme={responsiveTheme}>
-        <animated.div
-            ref={domTarget}
-            style={{
-                transform: "perspective(600px)",
-                x,
-                y,
-                scale: to([scale, zoom], (s, z) => s + z),
-                rotateX,
-                rotateY,
-                rotateZ,
-                backgroundColor: color,
-            }}
-        >
-            <Card variant="outlined" sx={{ width: '90%', height: '100%'}}>
-                <CardContent>
-                    <Typography fontWeight={"bold"} sx={{marginLeft:{ xs: '-15px', sm: '-5px', md: 'px' }, fontSize: { xs: '8px', sm: '8px', md: '16px' } }}>
-                        {skill}
-                    </Typography>
-                </CardContent>
-            </Card>
-        </animated.div>
+            <animated.div
+                ref={domTarget}
+                style={{
+                    transform: "perspective(150px)",
+                    x,
+                    y,
+                    scale: to([scale, zoom], (s, z) => s + z),
+                    rotateX,
+                    rotateY,
+                    rotateZ,
+                    backgroundColor: color,
+                    boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.3)",
+                    borderRadius: "10px",
+                    cursor: "grab",
+                    userSelect: "none",
+                    touchAction: 'none'
+                }}
+            >
+                <Card variant="outlined" sx={{ width: '85%', height: '100%' }}>
+                    <CardContent>
+                        <Typography fontWeight={"bold"} sx={{ marginLeft: { xs: '-15px', sm: '-5px', md: 'px' }, fontSize: { xs: '8px', sm: '8px', md: '16px' } }}>
+                            {skill}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </animated.div>
         </ThemeProvider>
     );
 };
 
 export default SkillCard;
+
+const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+};

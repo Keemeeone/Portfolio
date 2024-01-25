@@ -1,12 +1,12 @@
 // Skill.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
-SPDX-License-Identifier: {$SPDX_license_name}
+SPDX-License-Identifier: MIT
 */
 
-import React from "react";
+import React, { useState } from "react";
 import SkillCard from "./SkillCard";
-import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
+import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider, Alert } from "@mui/material";
 
 /**
  * Skill component displaying the user's skills.
@@ -25,14 +25,24 @@ const Skill = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
+    const [userStartedClicking, setUserStartedClicking] = useState(false);
+
+    const handleCardClick = () => {
+        setUserStartedClicking(true);
+    };
+
+    const handleTouchStart = () => {
+        setUserStartedClicking(true);
+    };
+
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <Container
-                
-            >
+            <Container>
                 <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     Skills
                 </Typography>
+
+                {!userStartedClicking && <Alert variant="outlined" severity="info">Try to move PostIt!</Alert>}
 
                 <Grid container spacing={1}>
                     {skillsData.map((category, index) => (
@@ -42,7 +52,15 @@ const Skill = () => {
                             </Typography>
                             <Grid container spacing={1}>
                                 {category.skills.map((skill, skillIndex) => (
-                                    <Grid item key={skillIndex} xs={6} sm={4} md={6}>
+                                    <Grid
+                                        item
+                                        key={skillIndex}
+                                        xs={6}
+                                        sm={4}
+                                        md={6}
+                                        onClick={handleCardClick}
+                                        onTouchStart={handleTouchStart}
+                                    >
                                         <SkillCard skill={skill} />
                                     </Grid>
                                 ))}

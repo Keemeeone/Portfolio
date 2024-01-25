@@ -1,7 +1,7 @@
 // Project.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
-SPDX-License-Identifier: {$SPDX_license_name}
+SPDX-License-Identifier: MIT
 */
 
 import React, { useState, useEffect } from "react";
@@ -17,15 +17,12 @@ import {
 } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
-/**
- * Project component displaying a carousel of project information, including title, role, description, images, and demo link.
- */
 const projectsData = [
     {
         title: "College Mate App",
         role: "Frontend Developer",
         description:
-            "CollegeMate is a college community app designed exclusively for University of Wisconsin-Madison students. With CollegeMate, students can create and customize their schedules, download them as share class information them with friends within the app.",
+            "I forged the front-end of College Mate, a University of Wisconsin–Madison app fostering student connections. Building with React, React Native, RESTful APIs, TypeScript, and HTML/CSS, I crafted user-friendly interfaces and engaging features. My focus on responsiveness ensured College Mate shines on any device, while pre-rendered wrapper pages slashed initial load times by 40% – all to get users interacting in a blink.",
         imageUrls: [
             "./CollegeMate1.png?as=webp",
             "./CollegeMate2.png?as=webp",
@@ -37,14 +34,14 @@ const projectsData = [
         title: "Wisconsin SCO",
         role: "Backend Developer",
         description:
-            "Simplify survey note retrieval by implementing an intuitive map-based interface, eliminating the need for specialized township knowledge and greatly enhancing user accessibility. \n *Demo cannot be provided because it is company's privacy",
+            "My key strengths lie in simplifying complex data and user interactions. I transformed a reliance on township expertise into a 50% more accessible map interface, and untangled 2,136 XML files with Python, building an export powerhouse that converts survey notes into any format, from CSV to JSON, empowering faster workflows and informed decisions. \n*Unfortunately, a demo cannot be provided due to company privacy restrictions.",
         imageUrls: ["./SCOmap.png?as=webp", "./SCOgithub.png?as=webp"],
     },
     {
         title: "Portfolio",
         role: "Web Developer",
         description:
-            "Explore a showcase of my diverse skills and projects in this comprehensive portfolio. From web development to creative design, discover the breadth of my expertise. Click to see my work in action! 👩‍💻🚀 #Portfolio #WebDev #Design",
+            "👩‍💻🚀 Dive into a vibrant tapestry of my skills and projects, showcased in this comprehensive portfolio. From weaving responsive and interactive designs with JSX, React, and Node.js to transforming intricate data into user-friendly tapestries, I leverage modern tools like MUI to breathe life into your vision. Unfurl the scroll to unveil the breadth of my expertise across web development and creative design – click to see my work in action! #Portfolio #WebDev #Design",
         imageUrls: [
             "./portfolio1.png?as=webp",
             "./portfolio2.png?as=webp",
@@ -55,6 +52,9 @@ const projectsData = [
     },
 ];
 
+/**
+ * Project component displaying a carousel of project information, including title, role, description, images, and demo link.
+ */
 const Project = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -72,9 +72,8 @@ const Project = () => {
 
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <Container
-            >
-                <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+            <Container>
+                <Typography fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     Projects
                 </Typography>
 

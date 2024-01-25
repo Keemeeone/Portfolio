@@ -1,7 +1,7 @@
 // Main.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
-SPDX-License-Identifier: {$SPDX_license_name}
+SPDX-License-Identifier: MIT
 */
 
 import React from "react";
