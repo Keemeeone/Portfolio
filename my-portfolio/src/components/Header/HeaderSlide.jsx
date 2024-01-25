@@ -1,3 +1,9 @@
+// HeaderSlide.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React, { useMemo } from 'react';
 import { Box } from '@mui/material';
 

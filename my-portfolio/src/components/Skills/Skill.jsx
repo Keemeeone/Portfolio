@@ -1,7 +1,16 @@
+// Skill.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React from "react";
 import SkillCard from "./SkillCard";
 import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
 
+/**
+ * Skill component displaying the user's skills.
+ */
 const skillsData = [
     { category: "Language", skills: ["JavaScript", "Java", "C", "Python", "TypeScript", "R"] },
     { category: "Markup", skills: ["HTML5", "CSS3"] },

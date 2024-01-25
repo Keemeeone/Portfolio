@@ -1,3 +1,9 @@
+// Contact.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React from "react";
 import { Container, Typography, List, ListItem, ListItemIcon, ListItemText, Button, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
 import Footer from "./Footer";
@@ -6,6 +12,9 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
+/**
+ * Contact component displaying contact information and links.
+ */
 const Contact = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));

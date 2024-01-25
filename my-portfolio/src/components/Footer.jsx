@@ -1,8 +1,16 @@
+// Footer.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 
+/**
+ * Footer component displaying copyright information.
+ */
 const Footer = () => {
-
     const footerStyle = {
         position: 'fixed',
         bottom: 30,

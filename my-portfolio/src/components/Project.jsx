@@ -1,3 +1,9 @@
+// Project.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React, { useState, useEffect } from "react";
 import {
     Container,
@@ -11,6 +17,9 @@ import {
 } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
+/**
+ * Project component displaying a carousel of project information, including title, role, description, images, and demo link.
+ */
 const projectsData = [
     {
         title: "College Mate App",

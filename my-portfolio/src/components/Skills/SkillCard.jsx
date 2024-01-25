@@ -1,3 +1,9 @@
+// SkillCard.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React, { useRef, useEffect } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
 import { useGesture } from "react-use-gesture";
@@ -6,6 +12,11 @@ import { Card, CardContent, Typography, useTheme, responsiveFontSizes, ThemeProv
 const calcX = (y, ly) => -(y - ly - window.innerHeight / 2) / 20;
 const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20;
 
+/**
+ * SkillCard component displaying a skill card with interactive animations.
+ * @param {Object} props - Props for the SkillCard component.
+ * @param {string} props.skill - The skill to be displayed on the card.
+ */
 const getRandomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";

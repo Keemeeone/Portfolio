@@ -1,18 +1,30 @@
+// Header.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: {$SPDX_license_name}
+*/
+
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Intro from "../Intro";
+import Home from "../Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume";
 import Project from "../Project";
 import Contact from "../Contact";
 import HeaderSlide from './HeaderSlide';
 
+/**
+ * Header component for the application.
+ * @param {Object} props - Props for the Header component.
+ * @param {number} props.currIdx - Current index for navigation.
+ * @param {Function} props.clickHandler - Click handler for navigation.
+ */
 const Header = ({ currIdx, clickHandler }) => {
   const [menuAnchor, setMenuAnchor] = useState(null);
 
   const navigationButtons = [
-    { label: 'Intro', component: Intro },
+    { label: 'Home', component: Home },
     { label: 'Skills', component: Skill },
     { label: 'Projects', component: Project },
     { label: 'Resume', component: Resume },
