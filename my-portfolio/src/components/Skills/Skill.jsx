@@ -42,7 +42,7 @@ const Skill = () => {
                     Skills
                 </Typography>
 
-                {!userStartedClicking && <Alert variant="outlined" severity="info">Try to move PostIt!</Alert>}
+                {!userStartedClicking && <Alert severity="info">Try to move Post-it!</Alert>}
 
                 <Grid container spacing={1}>
                     {skillsData.map((category, index) => (

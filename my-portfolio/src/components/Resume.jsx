@@ -63,22 +63,12 @@ const Resume = () => {
     const responsiveTheme = responsiveFontSizes(theme);
 
     const handleDownload = () => {
-        // Replace the following line with your actual resume file URL or download logic
-        const resumeFileUrl = "./resume.pdf";
-
-        // Create a link element
-        const link = document.createElement("a");
-        link.href = resumeFileUrl;
-        link.download = "./resume.pdf";
-        document.body.appendChild(link);
-
-        // Trigger the click event to start the download
-        link.click();
-
-        // Remove the link element from the DOM
-        document.body.removeChild(link);
+        const resumeFileUrl = "https://drive.google.com/file/d/1hcTAec2LGMMUD1qEYHyVrUGPGFYkvES6/view?usp=sharing";
+    
+        // Open the PDF file in a new tab
+        window.open(resumeFileUrl, "_blank");
     };
-
+    
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
