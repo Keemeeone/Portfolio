@@ -108,7 +108,6 @@ const Project = () => {
                                     textAlign={"center"}
                                     variant="body2"
                                     color="textPrimary"
-                                    mb={2}
                                     sx={{ fontSize: { xs: "6px", sm: "14px" } }}
                                 >
                                     {project.role}
@@ -123,16 +122,26 @@ const Project = () => {
                                     {project.description}
                                 </Typography>
                                 <Box sx={{ marginTop: "auto", textAlign: "center" }}>
-                                    {project.demoLink && (
-                                        <Button
-                                            href={project.demoLink}
-                                            variant="contained"
-                                            color="primary"
-                                            target="_blank"
-                                            sx={{ fontSize: { xs: "8px", sm: "14px" } }}
-                                        >
-                                            Demo
-                                        </Button>
+                                    {project.demoLink ? (
+                <Button
+                    href={project.demoLink}
+                    variant="contained"
+                    color="primary"
+                    target="_blank"
+                    sx={{ fontSize: { xs: "8px", sm: "14px" } }}
+                >
+                    Demo
+                </Button>
+            ) : (
+                <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    textAlign={"center"}
+                    mb={2}
+                    sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                >
+                    Demo not available
+                </Typography>
                                     )}
                                 </Box>
                             </Box>

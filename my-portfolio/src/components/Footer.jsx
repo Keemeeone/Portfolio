@@ -12,14 +12,14 @@ import { Box, Container, Typography } from "@mui/material";
  */
 const Footer = () => {
     const footerStyle = {
-        position: 'fixed',
-        bottom: 30,
+        position: 'absolute',
+        bottom: 10,
         width: '100%',
     };
 
     return (
         <Box sx={footerStyle} >
-            <Container component="footer" py={3} bgcolor="primary.main" color="white">
+            <Container component="footer" bgcolor="primary.main" color="white">
                 <Typography variant="body2" align="center">
                     &copy; 2024 Heewon Kim. All rights reserved.
                 </Typography>
