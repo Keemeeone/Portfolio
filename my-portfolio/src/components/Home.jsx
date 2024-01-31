@@ -34,7 +34,7 @@ const Intro = () => {
                 </Typography>
                 <Avatar
                     alt="Heewon's Character"
-                    src="/developer.png"
+                    src="/developer.png?as=webp"
                     sx={{
                         width: { xs: 150, sm: 200, md: 250 },
                         height: { xs: 150, sm: 200, md: 250 },
