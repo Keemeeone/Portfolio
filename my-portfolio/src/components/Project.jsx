@@ -74,7 +74,7 @@ const Project = () => {
         <ThemeProvider theme={responsiveTheme}>
             <Container>
                 <Typography fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                    Projects
+                    PROJECTS
                 </Typography>
 
                 <Carousel

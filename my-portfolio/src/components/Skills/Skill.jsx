@@ -39,7 +39,7 @@ const Skill = () => {
         <ThemeProvider theme={responsiveTheme}>
             <Container>
                 <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                    Skills
+                    SKILLS
                 </Typography>
 
                 {!userStartedClicking && <Alert severity="info">Try to move Post-it!</Alert>}

@@ -30,7 +30,7 @@ const Contact = () => {
                     }}
                 >
                     <Typography fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                        Contact
+                        CONTACT
                     </Typography>
 
                     <List>

@@ -11,11 +11,10 @@ const experienceData = [
     {
         title: "Back-end Developer",
         company: "Wisconsin State Cartographer's Office, Madison, WI",
-        year: "Sept 2023 - Present",
+        year: "Sept 2023 - Dec 2023",
         description: [
             "Simplified survey note retrieval through an intuitive map-based interface, enhancing user accessibility.",
-            "Analyzed 2,136 XML files to identify data patterns and developed an XML export feature using Python.",
-            "Developed a FastAPI endpoint for efficient transformation of survey notes into multiple formats.",
+            "Click DOWNLOAD RESUME for more information!",
         ],
     },
     {
@@ -24,8 +23,7 @@ const experienceData = [
         year: "Oct 2022 - Present",
         description: [
             "Front-end development of the College Mate App to build a connected community among University of Wisconsin–Madison students.",
-            "Implemented user-friendly interfaces and interactive features using React, React Native, RESTful APIs, TypeScript, and HTML/CSS.",
-            "Accelerated initial page loads by 40% through pre-rendered lightweight wrapper pages.",
+            "Click DOWNLOAD RESUME for more information!",
         ],
     },
 ];
@@ -35,21 +33,10 @@ const educationData = [
         degree: "Bachelor's in Computer Science",
         school: "University of Wisconsin - Madison",
         year: "Jan 2021 - Dec 2023",
-        courses: [
-            "Object-Oriented Programming",
-            "Data Structures",
-            "Machine Organization and Programming",
-            "Operating System",
-            "Front-end Designing",
-            "Software Quality Testing",
-            "Building User Interfaces",
-            "Human-Computer Interaction",
-            "Discrete Mathematics Propositioning",
-            "Algorithm",
-        ],
     },
     {
-        degree: "Madison Area Technical College",
+        degree: "Associate's",
+        school: "Madison Area Technical College",
         year: "Sept 2019 - Dec 2020",
     },
 ];
@@ -63,26 +50,26 @@ const Resume = () => {
     const responsiveTheme = responsiveFontSizes(theme);
 
     const handleDownload = () => {
-        const resumeFileUrl = "https://drive.google.com/file/d/1hcTAec2LGMMUD1qEYHyVrUGPGFYkvES6/view?usp=sharing";
-    
+        const resumeFileUrl = "./resume.pdf";
+
         // Open the PDF file in a new tab
         window.open(resumeFileUrl, "_blank");
     };
-    
+
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
                 <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                    Resume
+                    RESUME
                 </Typography>
 
-                <Typography variant="h4" mt={3} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
+                <Typography variant="h4" mt={2} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
                     Experiences
                 </Typography>
                 <Divider mb={2} />
 
                 {experienceData.map((experience, index) => (
-                    <Box key={index} mb={3}>
+                    <Box key={index} mb={1}>
                         <Typography variant="h6" style={{ fontSize: isSmallScreen ? "0.75em" : "1.2em" }}>
                             {experience.title}
                         </Typography>
@@ -97,13 +84,13 @@ const Resume = () => {
                     </Box>
                 ))}
 
-                <Typography variant="h4" mt={5} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
+                <Typography variant="h4" mt={2} mb={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.5em" }}>
                     Education
                 </Typography>
                 <Divider mb={2} />
 
                 {educationData.map((education, index) => (
-                    <Box key={index} mb={3}>
+                    <Box key={index} mb={1}>
                         <Typography variant="h6" style={{ fontSize: isSmallScreen ? "0.75em" : "1.2em" }}>
                             {education.degree}
                         </Typography>
@@ -112,6 +99,11 @@ const Resume = () => {
                         </Typography>
                     </Box>
                 ))}
+
+                <Typography variant="subtitle1" mt={2} style={{ fontSize: isSmallScreen ? "0.75em" : "1.2em" }}>
+                    Want more information?
+                </Typography>
+
                 <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
                     Download Resume
                 </Button>
