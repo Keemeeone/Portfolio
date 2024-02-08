@@ -34,11 +34,11 @@ const Intro = () => {
                 </Typography>
                 <Avatar
                     alt="Heewon's Character"
-                    src="/developer.png?as=webp"
+                    src="/developer.webp"
                     sx={{
                         width: { xs: 150, sm: 200, md: 250 },
                         height: { xs: 150, sm: 200, md: 250 },
-                        transition: "transform 0.5s ease-in-out",
+                        transition: "transform 0.8s ease-in-out",
                         transform: avatarTransform,
                     }}
                 />
