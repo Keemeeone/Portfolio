@@ -5,7 +5,9 @@ SPDX-License-Identifier: MIT
 */
 
 import React, { useState, useEffect, useRef } from "react";
+
 import Header from "../Header/Header";
+import Motion from "./Motion";
 
 /**
  * Scroll component handling vertical scrolling and displaying a Header.
@@ -95,6 +97,14 @@ const Scroll = ({ components }) => {
                 currIdx={activeIndex}
                 clickHandler={updateSlideState}
             />
+            {scrollPosition !== 0 && (
+                <Motion
+                    scrollPosition={scrollPosition}
+                    scrollHeight={scrollRef.current?.scrollHeight}
+                    clientHeight={scrollRef.current?.clientHeight}
+                />
+            )}
+            
             {components.map((component, index) => (
                 <div
                     key={index}

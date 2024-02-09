@@ -40,7 +40,7 @@ const Header = ({ currIdx, clickHandler }) => {
   };
 
   return (
-    <AppBar position="fixed" color="transparent" elevation={0} sx={{ backgroundColor: 'white' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'white', minHeight:'0', maxHeight:'100%', height:'4rem' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit', userSelect: 'none' }}>
           HEEWON's
