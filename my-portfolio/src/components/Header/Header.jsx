@@ -9,7 +9,7 @@ import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from 
 import MenuIcon from '@mui/icons-material/Menu';
 import Home from "../Home";
 import Skill from "../Skills/Skill";
-import Resume from "../Resume";
+import Resume from "../Resume/Resume";
 import Project from "../Project";
 import Contact from "../Contact";
 import HeaderSlide from './HeaderSlide';

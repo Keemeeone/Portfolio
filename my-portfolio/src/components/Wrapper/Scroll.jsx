@@ -114,7 +114,7 @@ const Scroll = ({ components }) => {
                         transition: "opacity 0.2s ease-in-out",
                     }}
                 >
-                    {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition })}
+                    {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition,activeIndex })}
                 </div>
             ))}
         </div>

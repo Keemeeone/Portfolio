@@ -20,7 +20,7 @@ const skillsData = [
     { category: "Design", skills: ["Figma"] },
 ];
 
-const Skill = () => {
+const Skill = ({activeIndex}) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
@@ -60,6 +60,7 @@ const Skill = () => {
                                         md={6}
                                         onClick={handleCardClick}
                                         onTouchStart={handleTouchStart}
+                                        sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
                                     >
                                         <SkillCard skill={skill} />
                                     </Grid>

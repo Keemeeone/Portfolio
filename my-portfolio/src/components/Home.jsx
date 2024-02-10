@@ -15,7 +15,7 @@ const responsiveTheme = responsiveFontSizes(theme);
 /**
  * Intro component displaying introductory information and an avatar.
  */
-const Intro = () => {
+const Intro = ({ activeIndex }) => {
     const [TTransform, setTTransform] = useState("scale(0.0)");
     const [avatarTransform, setAvatarTransform] = useState("scale(0.0)");
     const [nTransform, setNTransform] = useState("scale(0.0)");
@@ -24,19 +24,26 @@ const Intro = () => {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            setTTransform("scale(1.0)");
-            setAvatarTransform("scale(1.1)");
-            setSubTransform("scale(1.0)");
-            setNTransform("scale(1.0)");
+            if (activeIndex === 0) {
+                setTTransform("scale(1.0)");
+                setAvatarTransform("scale(1.1)");
+                setSubTransform("scale(1.0)");
+                setNTransform("scale(1.0)");
+            } else {
+                setTTransform("scale(0.0)");
+                setAvatarTransform("scale(0.0)");
+                setSubTransform("scale(0.0)");
+                setNTransform("scale(0.0)");
+            }
         }, 200);
 
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [activeIndex]);
 
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "12.5vh" }}>
-                <Typography variant="h3" fontWeight={"bold"} color="textPrimary" align="center" mb={3} sx={{transition: "transform 0.3s ease-in-out", transform: TTransform,}}>
+                <Typography variant="h3" fontWeight={"bold"} color="textPrimary" align="center" mb={3} sx={{ transition: "transform 0.3s ease-in-out", transform: TTransform, }}>
                     Hello, I'm
                 </Typography>
                 <Avatar
@@ -48,12 +55,14 @@ const Intro = () => {
                         height: { xs: 150, sm: 200, md: 250 },
                         transition: "transform 0.6s ease-in-out",
                         transform: avatarTransform,
+                        border: "5px solid #65f9af",
+                        borderRadius: "50%",
                     }}
                 />
-                <Typography variant="h1" fontWeight={"bold"} color="textPrimary" align="center" mt={3} mb={3} sx={{transition: "transform 0.9s ease-in-out", transform: nTransform,}}>
+                <Typography variant="h1" fontWeight={"bold"} color="textPrimary" align="center" mt={3} mb={3} sx={{ transition: "transform 0.9s ease-in-out", transform: nTransform, }}>
                     Heewon Kim
                 </Typography>
-                <Typography variant="body1" align="center" color="textSecondary" paragraph sx={{transition: "transform 1.2s ease-in-out", transform: subTransform,}}>
+                <Typography variant="body1" align="center" color="textSecondary" paragraph sx={{ transition: "transform 1.2s ease-in-out", transform: subTransform, }}>
                     I'm a passionate Software Developer. Explore my projects and skills to learn more about my work.
                 </Typography>
                 <style>

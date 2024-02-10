@@ -16,7 +16,7 @@ const Motion = ({ scrollPosition, scrollHeight, clientHeight }) => {
                 left: 0,
                 right: 0,
                 height: "0.5vh",
-                backgroundColor: "#60676B",
+                backgroundColor: "#65f9af",
                 transformOrigin: "0%",
             }}
         />
