@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Home from "../Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
-import Project from "../Project";
+import Project from "../Project/Project";
 import Contact from "../Contact";
 import HeaderSlide from './HeaderSlide';
 
@@ -40,19 +40,19 @@ const Header = ({ currIdx, clickHandler }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'white', minHeight:'0', maxHeight:'100%', height:'4rem' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'transparent', minHeight:'0', maxHeight:'100%', height:'4rem' }}>
       <Toolbar>
-        <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit', userSelect: 'none' }}>
+        <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's
         </Typography>
         {/* Menu Button for Small Devices */}
-        <IconButton color="inherit" onClick={openMenu} sx={{ display: { sm: 'block', md: 'none' } }}>
+        <IconButton color='#FFF' onClick={openMenu} sx={{ display: { sm: 'block', md: 'none' } }}>
           <MenuIcon />
         </IconButton>
         {/* Navigation Buttons */}
         {navigationButtons.map(({ label, component: Component }, idx) => (
           <React.Fragment key={idx}>
-            <Button color="inherit" onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' } }}>
+            <Button onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' }, color:'#FFF', fontWeight:'bold' }}>
               {label}
             </Button>
             <HeaderSlide

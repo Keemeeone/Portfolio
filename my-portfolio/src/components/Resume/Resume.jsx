@@ -97,20 +97,17 @@ const Resume = ({ activeIndex }) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     RESUME
                 </Typography>
 
                 <Grid container spacing={2} justifyContent="center" display="flex">
-                    {/* Image on the left */}
-                    <Grid item xs={12} md={4} justifyContent="center" display="flex" style={{ position: 'relative' }}>
+                    <Grid item xs={12} md={4} justifyContent="center" display="flex" style={{ position: 'relative', width:{xl:'20vw'}, height:{xl:'20vw'} }}>
                         {/* Pentagon shape */}
                         <Hexagon />
 
-                        <HexagonImage src="./profile.png" alt="Heewon's profile picture" activeIndex={activeIndex} />
+                        <HexagonImage src="./profile.png" alt="Heewon's profile picture" activeIndex={activeIndex} sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/>
                     </Grid>
-
-                    {/* Timeline on the right */}
                     <Grid item xs={12} md={8} >
                         <Timeline position="alternate" style={{ height: "50vh" }}>
                             {timeLineData.map((timeline) => (
@@ -119,7 +116,7 @@ const Resume = ({ activeIndex }) => {
                         </Timeline>
                     </Grid>
                     <Grid item xs={12} md={4} justifyContent="center" display="flex">
-                        <Button variant="outlined" onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px" }}>
+                        <Button variant='contained' onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px", color:'#327C57', backgroundColor:'#65f9af' }}>
                             Download Resume
                         </Button>
                     </Grid>

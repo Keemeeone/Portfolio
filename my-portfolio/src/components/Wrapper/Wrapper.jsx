@@ -10,7 +10,7 @@ import Scroll from './Scroll';
 import Intro from "../Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
-import Project from "../Project";
+import Project from "../Project/Project";
 import Contact from "../Contact";
 import Main from "../Main";
 

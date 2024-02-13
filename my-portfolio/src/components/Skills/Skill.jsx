@@ -38,7 +38,7 @@ const Skill = ({activeIndex}) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     SKILLS
                 </Typography>
 
@@ -47,7 +47,7 @@ const Skill = ({activeIndex}) => {
                 <Grid container spacing={1}>
                     {skillsData.map((category, index) => (
                         <Grid item key={index} xs={4} sm={6} md={4}>
-                            <Typography color={"GrayText"} mb={1} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
+                            <Typography color={'#65f9af'} fontWeight={"bold"} mb={1} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
                                 {category.category}
                             </Typography>
                             <Grid container spacing={1}>

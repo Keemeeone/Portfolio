@@ -14,14 +14,14 @@ const TimeLineCard = ({ time, activity, details, icon: Icon }) => {
             <TimelineSeparator>
                 <TimelineConnector sx={{ backgroundColor: '#65f9af' }}/>
                     <TimelineDot sx={{ backgroundColor: '#65f9af' }}>
-                        <Icon />
+                        <Icon sx={{ color: '#327C57' }}/>
                     </TimelineDot>
                 <TimelineConnector sx={{ backgroundColor: '#65f9af' }}/>
             </TimelineSeparator>
             <TimelineContent>
-                <Typography color="text.secondary" sx={{ fontSize: { xs: "0.5rem", sm: "0.75em", md: "1.0em" } }}>{time}</Typography>
-                <Typography sx={{ fontSize: { xs: "0.75rem", sm: "0.75em", md: "1.2em" } }}>{activity}</Typography>
-                <Typography color="text.secondary" sx={{ fontSize: { xs: "0.5rem", sm: "0.5em", md: "1.0em" } }} >{details}</Typography>
+                <Typography color="#FFF" sx={{ fontSize: { xs: "0.5rem", sm: "0.75em", md: "1.0em" } }}>{time}</Typography>
+                <Typography color="#FFF" sx={{ fontSize: { xs: "0.75rem", sm: "0.75em", md: "1.2em" } }}>{activity}</Typography>
+                <Typography color="#FFF" sx={{ fontSize: { xs: "0.5rem", sm: "0.5em", md: "1.0em" } }} >{details}</Typography>
             </TimelineContent>
         </TimelineItem>
     );

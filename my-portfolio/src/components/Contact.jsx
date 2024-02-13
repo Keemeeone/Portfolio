@@ -29,7 +29,7 @@ const Contact = () => {
                         // alignItems: "center",
                     }}
                 >
-                    <Typography fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                    <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                         CONTACT
                     </Typography>
 
@@ -41,8 +41,8 @@ const Contact = () => {
                             <ListItemText
                                 primary={
                                     <>
-                                        <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Email</Typography>
-                                        <Typography variant="body1" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>khw0285@gmail.com</Typography>
+                                        <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Email</Typography>
+                                        <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>khw0285@gmail.com</Typography>
                                     </>
                                 }
                             />
@@ -55,8 +55,8 @@ const Contact = () => {
                             <ListItemText
                                 primary={
                                     <>
-                                        <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Phone</Typography>
-                                        <Typography variant="body1" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>+1 (608) 471-8707</Typography>
+                                        <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Phone</Typography>
+                                        <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>+1 (608) 471-8707</Typography>
                                     </>
                                 }
                             />
@@ -71,7 +71,7 @@ const Contact = () => {
                                     <>
                                         {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>LinkedIn</Typography> */}
                                         <Typography variant="body1">
-                                            <Button href="https://www.linkedin.com/in/heewon-kim-hkim/" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>
+                                            <Button href="https://www.linkedin.com/in/heewon-kim-hkim/" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color:'#FFF' }}>
                                                 LinkedIn
                                             </Button>
                                         </Typography>
@@ -89,7 +89,7 @@ const Contact = () => {
                                     <>
                                         {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>GitHub</Typography> */}
                                         <Typography variant="body1">
-                                            <Button href="https://github.com/Keemeeone" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>
+                                            <Button href="https://github.com/Keemeeone" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color:'#FFF' }}>
                                                 GitHub Profile
                                             </Button>
                                         </Typography>
