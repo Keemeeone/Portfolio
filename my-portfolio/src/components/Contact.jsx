@@ -36,7 +36,7 @@ const Contact = () => {
                     <List>
                         <ListItem disableGutters>
                             <ListItemIcon>
-                                <EmailIcon />
+                                <EmailIcon sx={{ color: '#FFF' }}/>
                             </ListItemIcon>
                             <ListItemText
                                 primary={
@@ -50,7 +50,7 @@ const Contact = () => {
 
                         <ListItem disableGutters>
                             <ListItemIcon>
-                                <PhoneIcon />
+                                <PhoneIcon sx={{ color: '#FFF' }}/>
                             </ListItemIcon>
                             <ListItemText
                                 primary={
@@ -64,7 +64,7 @@ const Contact = () => {
 
                         <ListItem disableGutters>
                             <ListItemIcon>
-                                <LinkedInIcon />
+                                <LinkedInIcon sx={{ color: '#FFF' }}/>
                             </ListItemIcon>
                             <ListItemText
                                 primary={
@@ -82,7 +82,7 @@ const Contact = () => {
 
                         <ListItem disableGutters>
                             <ListItemIcon>
-                                <GitHubIcon />
+                                <GitHubIcon sx={{ color: '#FFF' }}/>
                             </ListItemIcon>
                             <ListItemText
                                 primary={

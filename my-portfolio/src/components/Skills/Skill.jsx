@@ -38,7 +38,7 @@ const Skill = ({activeIndex}) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center", }}>
                     SKILLS
                 </Typography>
 
@@ -60,7 +60,7 @@ const Skill = ({activeIndex}) => {
                                         md={6}
                                         onClick={handleCardClick}
                                         onTouchStart={handleTouchStart}
-                                        sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
+                                        // sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
                                     >
                                         <SkillCard skill={skill} />
                                     </Grid>

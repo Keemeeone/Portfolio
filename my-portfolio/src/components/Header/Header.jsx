@@ -12,7 +12,6 @@ import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
 import Project from "../Project/Project";
 import Contact from "../Contact";
-import HeaderSlide from './HeaderSlide';
 
 /**
  * Header component for the application.
@@ -20,7 +19,7 @@ import HeaderSlide from './HeaderSlide';
  * @param {number} props.currIdx - Current index for navigation.
  * @param {Function} props.clickHandler - Click handler for navigation.
  */
-const Header = ({ currIdx, clickHandler }) => {
+const Header = ({ clickHandler }) => {
   const [menuAnchor, setMenuAnchor] = useState(null);
 
   const navigationButtons = [
@@ -47,19 +46,14 @@ const Header = ({ currIdx, clickHandler }) => {
         </Typography>
         {/* Menu Button for Small Devices */}
         <IconButton color='#FFF' onClick={openMenu} sx={{ display: { sm: 'block', md: 'none' } }}>
-          <MenuIcon />
+          <MenuIcon sx={{ color: '#FFF' }} />
         </IconButton>
         {/* Navigation Buttons */}
-        {navigationButtons.map(({ label, component: Component }, idx) => (
+        {navigationButtons.map(({ label}, idx) => (
           <React.Fragment key={idx}>
             <Button onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' }, color:'#FFF', fontWeight:'bold' }}>
               {label}
             </Button>
-            <HeaderSlide
-              isCurrent={currIdx === idx}
-              thisIdx={idx}
-              clickHandler={() => clickHandler(idx)}
-            />
           </React.Fragment>
         ))}
         {/* Responsive Menu */}

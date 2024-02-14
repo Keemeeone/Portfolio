@@ -92,7 +92,7 @@ const Project = () => {
                                     project.imageUrls[currentImageIndex] ||
                                     project.imageUrls[0]
                                 }
-                                style={{ minHeight: "0", height: "100%", minWidth: "0", width: "100%", maxHeight: "50vh", maxWidth: "80%", border:'1px solid #65f9af', borderRadius:'10px' }}
+                                style={{ minHeight: "0", height: "100%", minWidth: "0", width: "100%", maxHeight: "50vh", maxWidth: "70%", border:'1px solid #65f9af', borderRadius:'10px' }}
                             />
                             <Box sx={{ textAlign: "center" }}>
                                 <Typography

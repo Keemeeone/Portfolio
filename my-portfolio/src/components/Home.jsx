@@ -5,12 +5,29 @@ SPDX-License-Identifier: MIT
 */
 
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Avatar, createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
+import { Container, Typography, createTheme, responsiveFontSizes, ThemeProvider, styled, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 // Create a theme with responsive font sizes
 const theme = createTheme();
 const responsiveTheme = responsiveFontSizes(theme);
+
+const Hexagon = styled('div')`
+  width: 20vw; 
+  height: 20vw;
+  background-color: #65f9af;
+  position: absolute;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: 0;
+`;
+
+const HexagonImage = styled('img')`
+  width: 20vw;
+  height: 20vw;
+  object-fit: cover;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  z-index: 2;
+`;
 
 /**
  * Intro component displaying introductory information and an avatar.
@@ -43,10 +60,10 @@ const Intro = ({ activeIndex }) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "12.5vh" }}>
-                <Typography variant="h3" fontWeight={"bold"} color="#FFF" align="center" mb={3} sx={{ transition: "transform 0.3s ease-in-out", transform: TTransform, }}>
+                <Typography flex={1} variant="h3" fontWeight={"bold"} color="#FFF" align="center" mb={3} sx={{ transition: "transform 0.3s ease-in-out", transform: TTransform, zIndex: 1 }}>
                     Hello, I'm
                 </Typography>
-                <Avatar
+                {/* <Avatar
                     alt="Heewon's Character"
                     src="/developer.png?as=webp"
                     loading="lazy"
@@ -58,7 +75,12 @@ const Intro = ({ activeIndex }) => {
                         border: "5px solid #65f9af",
                         borderRadius: "50%",
                     }}
-                />
+                /> */}
+                <Box style={{ position: 'relative' }}>
+                    <Hexagon sx={{ transition: "transform 0.3s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
+
+                    <HexagonImage src="./profile.png" alt="Heewon's profile picture" sx={{ transition: "transform 0.6s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
+                </Box>
                 <Typography variant="h1" fontWeight={"bold"} color="#FFF" align="center" mt={3} mb={3} sx={{ transition: "transform 0.9s ease-in-out", transform: nTransform, }}>
                     Heewon Kim
                 </Typography>

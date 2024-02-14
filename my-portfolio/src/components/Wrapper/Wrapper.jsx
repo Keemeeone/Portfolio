@@ -27,7 +27,7 @@ const Wrapper = () => {
                 <Project />,
                 <Resume />,
                 <Contact />,
-            ]} />
+            ]} /> 
             </Main>
         </>
     );

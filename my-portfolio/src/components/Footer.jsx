@@ -20,7 +20,7 @@ const Footer = () => {
     return (
         <Box sx={footerStyle} >
             <Container component="footer" bgcolor="primary.main" color="white">
-                <Typography variant="body2" align="center">
+                <Typography color="#FFF" variant="body2" align="center">
                     &copy; 2024 Heewon Kim. All rights reserved.
                 </Typography>
             </Container>

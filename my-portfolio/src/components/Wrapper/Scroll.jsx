@@ -55,7 +55,7 @@ const Scroll = ({ components }) => {
         if (scrollRef.current) {
             const componentHeight = scrollRef.current.clientHeight;
             const distanceToComponent = Math.abs(scrollPosition - index * componentHeight);
-            const maxDistance = componentHeight * 0.5;
+            const maxDistance = componentHeight * 0.4;
 
             // Calculate opacity based on the distance to the component
             const opacity = 1 - Math.min(distanceToComponent / maxDistance, 1);
@@ -94,7 +94,6 @@ const Scroll = ({ components }) => {
             <Header
                 orientation={'vertical'}
                 length={components.length}
-                currIdx={activeIndex}
                 clickHandler={updateSlideState}
             />
             {scrollPosition !== 0 && (
@@ -110,7 +109,7 @@ const Scroll = ({ components }) => {
                     key={index}
                     style={{
                         height: "100vh",
-                        opacity: calculateOpacity(index),
+                        opacity: calculateOpacity(index), 
                         transition: "opacity 0.2s ease-in-out",
                     }}
                 >

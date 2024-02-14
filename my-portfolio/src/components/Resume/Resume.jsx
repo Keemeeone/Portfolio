@@ -68,7 +68,7 @@ const HexagonImage = styled('img')`
   width: 30vw;
   height: 30vw;
   object-fit: cover;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   z-index: 2;
   transition: transform 0.5s ease; // Add a transition for the transform property
 
@@ -106,7 +106,7 @@ const Resume = ({ activeIndex }) => {
                         {/* Pentagon shape */}
                         <Hexagon />
 
-                        <HexagonImage src="./profile.png" alt="Heewon's profile picture" activeIndex={activeIndex} sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/>
+                        <HexagonImage src="/developer.png?as=webp"alt="Heewon's profile picture" activeIndex={activeIndex} sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/>
                     </Grid>
                     <Grid item xs={12} md={8} >
                         <Timeline position="alternate" style={{ height: "50vh" }}>

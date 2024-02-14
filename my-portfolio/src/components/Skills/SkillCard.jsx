@@ -64,7 +64,7 @@ const SkillCard = ({ skill }) => {
         document.addEventListener("gesturechange", preventDefault);
         const colorChangeInterval = setInterval(() => {
             api.start({ color: getRandomColor() });
-        }, 2000); // 3초마다 색상 변경
+        }, 2000); // 2초마다 색상 변경
 
         return () => {
             document.removeEventListener("gesturestart", preventDefault);
