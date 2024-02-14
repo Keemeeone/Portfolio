@@ -102,9 +102,9 @@ const Resume = ({ activeIndex }) => {
                 </Typography>
 
                 <Grid container spacing={2} justifyContent="center" display="flex">
-                    <Grid item xs={12} md={4} justifyContent="center" display="flex" style={{ position: 'relative', width:{xl:'20vw'}, height:{xl:'20vw'} }}>
+                    <Grid item xs={12} md={4} justifyContent="center" display="flex" style={{ position: 'relative'}}>
                         {/* Pentagon shape */}
-                        <Hexagon />
+                        <Hexagon sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/> 
 
                         <HexagonImage src="/developer.png?as=webp"alt="Heewon's profile picture" activeIndex={activeIndex} sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/>
                     </Grid>
