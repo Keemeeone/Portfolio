@@ -80,7 +80,7 @@ const Intro = ({ activeIndex }) => {
                 <Box style={{ position: 'relative' }}>
                     <Hexagon sx={{ transition: "transform 0.3s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
 
-                    <HexagonImage src="./profile.png" alt="Heewon's profile picture" sx={{ transition: "transform 0.6s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
+                    <HexagonImage src="./profile.png?as=webp" alt="Heewon's profile picture" sx={{ transition: "transform 0.6s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
                 </Box>
                 <Typography variant="h1" fontWeight={"bold"} color="#FFF" align="center" mt={3} mb={3} sx={{ transition: "transform 0.9s ease-in-out", transform: nTransform, }}>
                     Heewon Kim

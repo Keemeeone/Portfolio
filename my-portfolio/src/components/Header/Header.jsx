@@ -39,7 +39,7 @@ const Header = ({ clickHandler }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'transparent', minHeight:'0', maxHeight:'100%', height:'4rem' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'transparent', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's
@@ -49,9 +49,40 @@ const Header = ({ clickHandler }) => {
           <MenuIcon sx={{ color: '#FFF' }} />
         </IconButton>
         {/* Navigation Buttons */}
-        {navigationButtons.map(({label}, idx) => (
+        {navigationButtons.map(({ label }, idx) => (
           <React.Fragment key={idx}>
-            <Button onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' }, color:'#FFF', fontWeight:'bold' }}>
+            <Button
+              onClick={() => clickHandler(idx)}
+              sx={{
+                display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' },
+                color: '#FFF',
+                fontWeight: 'bold',
+                textDecoration: 'none', 
+                position: 'relative', 
+                overflow: 'hidden', 
+                transition: 'color 0.3s ease, transform 0.3s ease',
+
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  left: 0,
+                  bottom: 0,
+                  borderRadius:'30%',
+                  width: '100%',
+                  height: '2px',
+                  background: '#fff',
+                  transform: 'scaleX(0)',
+                  transition: 'transform 0.3s ease', 
+                },
+
+                '&:hover': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  '&::after': {
+                    transform: 'scaleX(1)',
+                  },
+                },
+              }}
+            >
               {label}
             </Button>
           </React.Fragment>
@@ -61,10 +92,18 @@ const Header = ({ clickHandler }) => {
           anchorEl={menuAnchor}
           open={Boolean(menuAnchor)}
           onClose={closeMenu}
-          sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' } }}
+          PaperProps={{
+            sx: {
+              width: '100%',
+              backgroundColor: 'rgba(40, 99, 70, 0.98)',
+              color: '#FFF',
+              marginTop: '1rem'
+            },
+          }}
+          sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' }, backgroundColor: '', width: '100%', }}
         >
           {navigationButtons.map(({ label }, idx) => (
-            <MenuItem key={idx} onClick={() => { clickHandler(idx); closeMenu(); }}>
+            <MenuItem key={idx} onClick={() => { clickHandler(idx); closeMenu(); }} sx={{ justifyContent: 'center' }}>
               {label}
             </MenuItem>
           ))}

@@ -42,7 +42,7 @@ const Skill = ({activeIndex}) => {
                     SKILLS
                 </Typography>
 
-                {!userStartedClicking && <Alert severity="info" sx={{backgroundColor:'#286346', color:'#FFF', fontWeight:'bold'}}>Try to move Post-it!</Alert>}
+                {!userStartedClicking && <Alert severity="info" sx={{backgroundColor:'#286346', color:'#FFF'}}>Try to move Post-it!</Alert>}
 
                 <Grid container spacing={1}>
                     {skillsData.map((category, index) => (
