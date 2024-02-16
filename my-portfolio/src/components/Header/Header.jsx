@@ -7,11 +7,11 @@ SPDX-License-Identifier: MIT
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Home from "../Home";
+import Home from "../Home/Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
 import Project from "../Project/Project";
-import Contact from "../Contact";
+import Contact from "../Contact/Contact";
 
 /**
  * Header component for the application.
@@ -49,7 +49,7 @@ const Header = ({ clickHandler }) => {
           <MenuIcon sx={{ color: '#FFF' }} />
         </IconButton>
         {/* Navigation Buttons */}
-        {navigationButtons.map(({ label}, idx) => (
+        {navigationButtons.map(({label}, idx) => (
           <React.Fragment key={idx}>
             <Button onClick={() => clickHandler(idx)} sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' }, color:'#FFF', fontWeight:'bold' }}>
               {label}

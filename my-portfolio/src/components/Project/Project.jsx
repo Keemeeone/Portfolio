@@ -82,7 +82,7 @@ const Project = () => {
                     animation="slide"
                     timeout={500}
                     navButtonsAlwaysVisible
-                    indicators={false}
+                    indicators={true}
                 >
                     {projectsData.map((project, index) => (
                         <Box key={index} sx={{ display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center" }}>
