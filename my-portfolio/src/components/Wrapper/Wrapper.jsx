@@ -1,10 +1,5 @@
 // Wrapper.jsx
-/*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
-SPDX-License-Identifier: MIT
-*/
-
-import React from "react";
+import React, { useRef } from "react";
 import Scroll from './Scroll';
 
 import Intro from "../Home/Home";
@@ -18,16 +13,19 @@ import Main from "./Main";
  * Wrapper component containing the Main component and Scroll component with specified sections.
  */
 const Wrapper = () => {
+    // Project 컴포넌트에 대한 Ref
+    const projectRef = useRef(null);
+
     return (
         <>
             <Main>
-            <Scroll components={[
-                <Intro />,
-                <Skill />,
-                <Project />,
-                <Resume />,
-                <Contact />,
-            ]} /> 
+                <Scroll components={[
+                    <Intro />,
+                    <Skill />,
+                    <Project ref={projectRef} />,  // Project 컴포넌트에 Ref 전달
+                    <Resume />,
+                    <Contact />,
+                ]} />
             </Main>
         </>
     );

@@ -19,6 +19,7 @@ import Carousel from "react-material-ui-carousel";
 
 const projectsData = [
     {
+        id: 1,
         title: "College Mate App",
         role: "Frontend Developer",
         description:
@@ -31,6 +32,7 @@ const projectsData = [
         demoLink: "https://collegemate.app/",
     },
     {
+        id: 2,
         title: "Wisconsin SCO",
         role: "Backend Developer",
         description:
@@ -38,6 +40,7 @@ const projectsData = [
         imageUrls: ["./SCOmap.png?as=webp", "./SCOgithub.png?as=webp"],
     },
     {
+        id: 3,
         title: "Portfolio",
         role: "Web Developer",
         description:
@@ -61,6 +64,15 @@ const Project = () => {
     const responsiveTheme = responsiveFontSizes(theme);
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -76,75 +88,98 @@ const Project = () => {
                 <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     PROJECTS
                 </Typography>
-
                 <Carousel
                     autoPlay={true}
                     animation="slide"
-                    timeout={500}
+                    timeout={600}
                     navButtonsAlwaysVisible
                     indicators={true}
                 >
-                    {projectsData.map((project, index) => (
-                        <Box key={index} sx={{ display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center" }}>
+                    {projectsData.map((project) => (
+                        <Box key={project.id} sx={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }} onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}>
                             <img
                                 alt={project.title}
                                 src={
                                     project.imageUrls[currentImageIndex] ||
                                     project.imageUrls[0]
                                 }
-                                style={{ minHeight: "0", height: "100%", minWidth: "0", width: "100%", maxHeight: "50vh", maxWidth: "70%", border:'1px solid #65f9af', borderRadius:'10px' }}
+                                style={{
+                                    minHeight: "0",
+                                    height: "100%",
+                                    minWidth: "0",
+                                    width: "100%",
+                                    // maxHeight: "50vh",
+                                    maxWidth: "80%",
+                                    border: "1px solid #65f9af",
+                                    borderRadius: "10px",
+                                    position: "relative",
+                                    opacity: isHovered ? 0.1 : 1,
+                                }}
                             />
-                            <Box sx={{ textAlign: "center" }}>
-                                <Typography
-                                    color={'#FFF'}
-                                    fontWeight={"bold"}
-                                    textAlign={"center"}
-                                    mb={2}
-                                    sx={{ fontSize: { xs: "8px", sm: "14px", md: "20px" } }}
+                            {isHovered &&
+                                <Box
+                                    sx={{
+                                        textAlign: "center",
+                                        position: "absolute",
+                                        maxWidth: "70%",
+                                        // top: "50%",
+                                        // left: "50%",
+                                        // transform: "translate(-50%, -50%)",
+                                        // transition: "opacity 0.3s ease-in-out",
+                                    }}
                                 >
-                                    {project.title}
-                                </Typography>
-                                <Typography
-                                    color={'#FFF'}
-                                    fontWeight={"bold"}
-                                    textAlign={"center"}
-                                    variant="body2"
-                                    sx={{ fontSize: { xs: "6px", sm: "14px" } }}
-                                >
-                                    {project.role}
-                                </Typography>
-                                <Typography
-                                    color={'#FFF'}
-                                    variant="body2"
-                                    textAlign={"center"}
-                                    mb={2}
-                                    sx={{ fontSize: { xs: "6px", sm: "14px" } }}
-                                >
-                                    {project.description}
-                                </Typography>
-                                <Box sx={{ marginTop: "auto", textAlign: "center" }}>
-                                    {project.demoLink ? (
-                                        <Button
-                                            href={project.demoLink}
-                                            variant="contained"
-                                            target="_blank"
-                                            sx={{ fontSize: { xs: "8px", sm: "14px" }, backgroundColor:'#65f9af', color:'#327C57' }}
-                                        >
-                                            Demo
-                                        </Button>
-                                    ) : (
-                                        <Typography
-                                            variant="body2"
-                                            color={'#FFF'}
-                                            textAlign={"center"}
-                                            mb={2}
-                                            sx={{ fontSize: { xs: "6px", sm: "14px" } }}
-                                        >
-                                            Demo Not Available
-                                        </Typography>
-                                    )}
+                                    <Typography
+                                        color={'#FFF'}
+                                        fontWeight={"bold"}
+                                        textAlign={"center"}
+                                        mb={2}
+                                        sx={{ fontSize: { xs: "8px", sm: "14px", md: "20px" } }}
+                                    >
+                                        {project.title}
+                                    </Typography>
+                                    <Typography
+                                        color={'#FFF'}
+                                        fontWeight={"bold"}
+                                        textAlign={"center"}
+                                        variant="body2"
+                                        sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                                    >
+                                        {project.role}
+                                    </Typography>
+                                    <Typography
+                                        color={'#FFF'}
+                                        variant="body2"
+                                        textAlign={"center"}
+                                        mb={2}
+                                        sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                                    >
+                                        {project.description}
+                                    </Typography>
+                                    <Box sx={{ marginTop: "auto", textAlign: "center" }}>
+                                        {project.demoLink ? (
+                                            <Button
+                                                href={project.demoLink}
+                                                variant="contained"
+                                                target="_blank"
+                                                sx={{ fontSize: { xs: "8px", sm: "14px" }, backgroundColor: '#65f9af', color: '#327C57' }}
+                                            >
+                                                Demo
+                                            </Button>
+                                        ) : (
+                                            <Typography
+                                                variant="body2"
+                                                color={'#FFF'}
+                                                textAlign={"center"}
+                                                mb={2}
+                                                sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                                            >
+                                                Demo Not Available
+                                            </Typography>
+                                        )}
+                                    </Box>
                                 </Box>
-                            </Box>
+                            }
                         </Box>
                     ))}
                 </Carousel>

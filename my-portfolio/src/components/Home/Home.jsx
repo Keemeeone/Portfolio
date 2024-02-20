@@ -61,7 +61,7 @@ const Intro = ({ activeIndex }) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container id="intro" sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "12.5vh" }}>
-                <Typography flex={1} variant="h3" fontWeight={"bold"} color="#FFF" align="center" mb={3} sx={{ transition: "transform 0.3s ease-in-out", transform: TTransform, zIndex: 1 }}>
+                <Typography flex={1} variant="h3" fontWeight={"bold"} color="#FFF" align="center" mb={3} sx={{ transition: "transform 0.4s ease-in-out", transform: TTransform, zIndex: 1 }}>
                     Hello, I'm
                 </Typography>
                 {/* <Avatar
@@ -78,11 +78,11 @@ const Intro = ({ activeIndex }) => {
                     }}
                 /> */}
                 <Box style={{ position: 'relative' }}>
-                    <Hexagon sx={{ transition: "transform 0.3s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
+                    <Hexagon sx={{ transition: "transform 0.4s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
 
-                    <HexagonImage src="./profile.png?as=webp" alt="Heewon's profile picture" sx={{ transition: "transform 0.6s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
+                    <HexagonImage src="./profile.png?as=webp" alt="Heewon's profile picture" sx={{ transition: "transform 0.8s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
                 </Box>
-                <Typography variant="h1" fontWeight={"bold"} color="#FFF" align="center" mt={3} mb={3} sx={{ transition: "transform 0.9s ease-in-out", transform: nTransform, }}>
+                <Typography variant="h1" fontWeight={"bold"} color="#FFF" align="center" mt={3} mb={3} sx={{ transition: "transform 1.0s ease-in-out", transform: nTransform, }}>
                     Heewon Kim
                 </Typography>
                 <ReactTyped strings={["I'm a passionate Software Developer. <br/> Explore my projects and skills to learn more about my possibility."]} typeSpeed={40} backSpeed={60} loop style={{color:"#FFF", fontWeight:'bold', textAlign:'center', transition: "transform 1.2s ease-in-out", transform: subTransform}}/>

@@ -12,15 +12,15 @@ import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSiz
  * Skill component displaying the user's skills.
  */
 const skillsData = [
-    { category: "Language", skills: ["JavaScript", "Java", "C", "Python", "TypeScript", "R"] },
-    { category: "Markup", skills: ["HTML5", "CSS3"] },
-    { category: "Data", skills: ["MySQL", "JSON"] },
-    { category: "Framework", skills: ["React", "React-Native", "FastAPI", "Node.js"] },
-    { category: "Tool", skills: ["Postman", "Git", "Github", "Linux", "Jira"] },
-    { category: "Design", skills: ["Figma"] },
+    { id: 1, category: "Language", skills: ["JavaScript", "Java", "C", "Python", "TypeScript", "R"] },
+    { id: 2, category: "Markup", skills: ["HTML5", "CSS3"] },
+    { id: 3, category: "Data", skills: ["MySQL", "JSON"] },
+    { id: 4, category: "Framework", skills: ["React", "React-Native", "FastAPI", "Node.js"] },
+    { id: 5, category: "Tool", skills: ["Postman", "Git", "Github", "Linux", "Jira"] },
+    { id: 6, category: "Design", skills: ["Figma"] },
 ];
 
-const Skill = ({activeIndex}) => {
+const Skill = ({ activeIndex }) => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
@@ -42,11 +42,11 @@ const Skill = ({activeIndex}) => {
                     SKILLS
                 </Typography>
 
-                {!userStartedClicking && <Alert severity="info" sx={{backgroundColor:'#286346', color:'#FFF'}}>Try to move Post-it!</Alert>}
+                {!userStartedClicking && <Alert severity="info" sx={{ backgroundColor: '#286346', color: '#FFF' }}>Try to move Post-it!</Alert>}
 
                 <Grid container spacing={1}>
-                    {skillsData.map((category, index) => (
-                        <Grid item key={index} xs={4} sm={6} md={4}>
+                    {skillsData.map((category) => (
+                        <Grid item key={category.id} xs={4} sm={6} md={4}>
                             <Typography color={'#FFF'} fontWeight={"bold"} mb={1} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
                                 {category.category}
                             </Typography>
@@ -60,7 +60,7 @@ const Skill = ({activeIndex}) => {
                                         md={6}
                                         onClick={handleCardClick}
                                         onTouchStart={handleTouchStart}
-                                        // sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
+                                    // sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
                                     >
                                         <SkillCard skill={skill} />
                                     </Grid>

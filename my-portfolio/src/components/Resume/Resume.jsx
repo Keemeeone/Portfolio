@@ -85,7 +85,7 @@ const Resume = ({ activeIndex }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
-    console.log("activeIndex", activeIndex)
+    // console.log("activeIndex", activeIndex)
 
     const handleDownload = () => {
         const resumeFileUrl = "./resume.pdf";
