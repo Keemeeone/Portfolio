@@ -81,26 +81,6 @@ const Scroll = ({ components }) => {
         scrollToComponent(index);
     };
 
-    const handleComponentScroll = (index) => (e) => {
-        const componentRef = components[index].ref;
-        
-        if (componentRef.current) {
-            const scrollTop = componentRef.current.scrollTop;
-            const maxScrollTop = componentRef.current.scrollHeight - componentRef.current.clientHeight;
-
-            if (scrollTop === 0) {
-                // 특정 컴포넌트에서의 상단에서의 스크롤이 맨 위에 도달하면 추가 스크롤 허용
-                scrollRef.current.style.overflowY = "scroll";
-            } else if (scrollTop === maxScrollTop) {
-                // 특정 컴포넌트에서의 하단에서의 스크롤이 맨 아래에 도달하면 추가 스크롤 허용
-                scrollRef.current.style.overflowY = "scroll";
-            } else {
-                // 특정 컴포넌트 내부에서의 스크롤 중에는 스크롤 금지
-                scrollRef.current.style.overflowY = "hidden";
-            }
-        }
-    };
-
     return (
         <div
             ref={scrollRef}
@@ -127,13 +107,10 @@ const Scroll = ({ components }) => {
             {components.map((component, index) => (
                 <div
                     key={index}
-                    ref={component.ref}
-                    onScroll={handleComponentScroll(index)}
                     style={{
                         height: "100vh",
                         opacity: calculateOpacity(index), 
                         transition: "opacity 0.2s ease-in-out",
-                        overflowY: "hidden",
                     }}
                 >
                     {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition,activeIndex })}

@@ -1,0 +1,25 @@
+/* Wrapper.css */
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  * {
+
+  }
+  
+  body {
+
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  section {
+    height: 100vh;
+    scroll-snap-align: center;
+  }
+  
