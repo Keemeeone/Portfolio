@@ -18,6 +18,7 @@ const Motion = ({ scrollPosition, scrollHeight, clientHeight }) => {
                 height: "0.5vh",
                 backgroundColor: "#65f9af",
                 transformOrigin: "0%",
+                zIndex:2,
             }}
         />
     );

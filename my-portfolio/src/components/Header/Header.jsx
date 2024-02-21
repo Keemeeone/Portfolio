@@ -39,7 +39,7 @@ const Header = ({ clickHandler }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'transparent', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: '#0A1811', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's
