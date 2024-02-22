@@ -8,6 +8,7 @@ import React, { useState, useRef } from "react";
 
 import Header from "../Header/Header";
 import Motion from "./Motion";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 /**
  * Scroll component handling vertical scrolling and displaying a Header.
@@ -81,6 +82,15 @@ const Scroll = ({ components }) => {
         scrollToComponent(index);
     };
 
+    const moveToTop = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <div
             ref={scrollRef}
@@ -103,19 +113,48 @@ const Scroll = ({ components }) => {
                     clientHeight={scrollRef.current?.clientHeight}
                 />
             )}
-            
+
             {components.map((component, index) => (
                 <div
                     key={index}
                     style={{
                         height: "100vh",
-                        opacity: calculateOpacity(index), 
+                        opacity: calculateOpacity(index),
                         transition: "opacity 0.2s ease-in-out",
                     }}
                 >
-                    {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition,activeIndex })}
+                    {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition, activeIndex })}
                 </div>
             ))}
+            <style>
+                {`
+                        @keyframes bounce {
+                            0%, 20%, 50%, 80%, 100% {
+                                transform: translateY(0);
+                            }
+                            50% {
+                                transform: translateY(10px);
+                            }
+                            100% {
+                                transform: translateY(0px);
+                            }
+                        }
+                    `}
+            </style>
+            <div
+                style={{
+                    position: "fixed",
+                    bottom: "20px",
+                    right: "20px",
+                    cursor: "pointer",
+                    zIndex: 1000,
+                    color: "#FFF",
+                    animation: "bounce 2s infinite",
+                }}
+                onClick={moveToTop}
+            >
+                <ArrowCircleUpIcon sx={{ fontSize: 30 }}/>
+            </div>
         </div>
     );
 };
