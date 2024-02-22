@@ -28,7 +28,7 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',overflowX: 'hidden'  }}>
             <motion.div style={{ x: x, width: '100%' }}>
                 <Typography color={'#FFF'} fontWeight={"bold"} variant="h1" style={{ fontSize: isSmallScreen ? "3em" : "5.5rem", textAlign: "center" }}>
                     {children}
@@ -40,9 +40,9 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
 
 export default function ProSkill({ scrollPosition, activeIndex }) {
     return (
-        <section style={{paddingTop:'5rem'}}>
-            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={-10}>LET'S</ParallaxText>
-            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={10}>START!</ParallaxText>
+        <section style={{paddingTop:'10rem'}}>
+            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={-6}>LET'S</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={6}>START!</ParallaxText>
         </section>
     );
 }

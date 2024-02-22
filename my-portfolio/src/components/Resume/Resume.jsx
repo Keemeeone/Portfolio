@@ -102,7 +102,7 @@ const Resume = ({ activeIndex }) => {
                 </Typography>
 
                 <Grid container spacing={2} justifyContent="center" display="flex">
-                    <Grid item xs={12} md={4} justifyContent="center" display="flex" style={{ position: 'relative'}}>
+                    <Grid item xs={6} md={4} justifyContent="center" display="flex" style={{ position: 'relative'}}>
                         {/* Pentagon shape */}
                         <Hexagon sx={{width:{xl:'20vw'}, height:{xl:'20vw'}}}/> 
 
@@ -115,11 +115,11 @@ const Resume = ({ activeIndex }) => {
                             ))}
                         </Timeline>
                     </Grid>
-                    <Grid item xs={12} md={4} justifyContent="center" display="flex">
-                        <Button variant='contained' onClick={handleDownload} style={{ marginBottom: isSmallScreen ? "10px" : "20px", color:'#327C57', backgroundColor:'#65f9af' }}>
+                    {/* <Grid item xs={12} md={4} justifyContent="center" display="flex"> */}
+                        <Button variant='contained' onClick={handleDownload} style={{ color:'#327C57', backgroundColor:'#65f9af' }}>
                             Download Resume
-                        </Button>
-                    </Grid>
+                        </Button> 
+                    {/* </Grid> */}
                 </Grid>
             </Container>
         </ThemeProvider>
