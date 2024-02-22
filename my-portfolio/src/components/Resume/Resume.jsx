@@ -72,7 +72,7 @@ const HexagonImage = styled('img')`
   z-index: 2;
   transition: transform 0.5s ease; // Add a transition for the transform property
 
-  ${({ activeIndex }) => activeIndex === 2 && `
+  ${({ activeIndex }) => activeIndex <= 4 && `
     transform: rotateY(180deg) perspective(1000px);
   `}
 `;
@@ -85,7 +85,7 @@ const Resume = ({ activeIndex }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
-    // console.log("activeIndex", activeIndex)
+    console.log("activeIndex", activeIndex)
 
     const handleDownload = () => {
         const resumeFileUrl = "./resume.pdf";

@@ -4,9 +4,9 @@ SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
 
-import React, { useState } from "react";
+import React from "react";
 import SkillCard from "./SkillCard";
-import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider, Alert } from "@mui/material";
+import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSizes, ThemeProvider } from "@mui/material";
 
 /**
  * Skill component displaying the user's skills.
@@ -50,28 +50,28 @@ const Skill = ({ activeIndex }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
-    const [userStartedClicking, setUserStartedClicking] = useState(false);
+    // const [userStartedClicking, setUserStartedClicking] = useState(false);
 
-    const handleCardClick = () => {
-        setUserStartedClicking(true);
-    };
+    // const handleCardClick = () => {
+    //     setUserStartedClicking(true);
+    // };
 
-    const handleTouchStart = () => {
-        setUserStartedClicking(true);
-    };
+    // const handleTouchStart = () => {
+    //     setUserStartedClicking(true);
+    // };
 
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={3} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center", }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center", }}>
                     SKILLS
                 </Typography>
 
-                {!userStartedClicking && <Alert severity="info" sx={{ backgroundColor: '#286346', color: '#FFF' }}>Try to Hover Mouse On Icons!</Alert>}
+                {/* {!userStartedClicking && <Alert severity="info" sx={{ backgroundColor: '#286346', color: '#FFF' }}>Try to Hover Mouse On Icons!</Alert>} */}
 
                 <Grid container spacing={1}>
                     {skillsData.map((category) => (
-                        <Grid item key={category.id} xs={4} sm={6} md={4}>
+                        <Grid item key={category.id} xs={2} sm={6} md={4}>
                             <Typography color={'#FFF'} fontWeight={"bold"} mb={1} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
                                 {/* {category.category} */}
                             </Typography>
@@ -83,8 +83,8 @@ const Skill = ({ activeIndex }) => {
                                         xs={8}
                                         sm={4}
                                         md={6}
-                                        onClick={handleCardClick}
-                                        onTouchStart={handleTouchStart}
+                                        // onClick={handleCardClick}
+                                        // onTouchStart={handleTouchStart}
                                     // sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
                                     >
                                         <SkillCard skill={skill} />

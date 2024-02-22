@@ -23,11 +23,11 @@ const Header = ({ clickHandler }) => {
   const [menuAnchor, setMenuAnchor] = useState(null);
 
   const navigationButtons = [
-    { label: 'Home', component: Home },
-    { label: 'Skills', component: Skill },
-    { label: 'Projects', component: Projects },
-    { label: 'Resume', component: Resume },
-    { label: 'Contact', component: Contact },
+    { id: 0, label: 'Home', component: Home },
+    { id: 2, label: 'Skills', component: Skill },
+    { id: 3, label: 'Projects', component: Projects },
+    { id: 4, label: 'Resume', component: Resume },
+    { id: 5, label: 'Contact', component: Contact },
   ];
 
   const openMenu = (event) => {
@@ -49,17 +49,17 @@ const Header = ({ clickHandler }) => {
           <MenuIcon sx={{ color: '#FFF' }} />
         </IconButton>
         {/* Navigation Buttons */}
-        {navigationButtons.map(({ label }, idx) => (
+        {navigationButtons.map(({ id, label }, idx) => (
           <React.Fragment key={idx}>
             <Button
-              onClick={() => clickHandler(idx)}
+              onClick={() => clickHandler(id)}
               sx={{
                 display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' },
                 color: '#FFF',
                 fontWeight: 'bold',
-                textDecoration: 'none', 
-                position: 'relative', 
-                overflow: 'hidden', 
+                textDecoration: 'none',
+                position: 'relative',
+                overflow: 'hidden',
                 transition: 'color 0.3s ease, transform 0.3s ease',
 
                 '&::after': {
@@ -67,12 +67,12 @@ const Header = ({ clickHandler }) => {
                   position: 'absolute',
                   left: 0,
                   bottom: 0,
-                  borderRadius:'30%',
+                  borderRadius: '30%',
                   width: '100%',
                   height: '2px',
                   background: '#fff',
                   transform: 'scaleX(0)',
-                  transition: 'transform 0.3s ease', 
+                  transition: 'transform 0.3s ease',
                 },
 
                 '&:hover': {
@@ -102,8 +102,8 @@ const Header = ({ clickHandler }) => {
           }}
           sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' }, backgroundColor: '', width: '100%', }}
         >
-          {navigationButtons.map(({ label }, idx) => (
-            <MenuItem key={idx} onClick={() => { clickHandler(idx); closeMenu(); }} sx={{ justifyContent: 'center' }}>
+           {navigationButtons.map(({ id, label }, idx) => (
+            <MenuItem key={idx} onClick={() => { clickHandler(id); closeMenu(); }} sx={{ justifyContent: 'center' }}>
               {label}
             </MenuItem>
           ))}

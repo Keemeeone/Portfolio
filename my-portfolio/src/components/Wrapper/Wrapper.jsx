@@ -8,6 +8,7 @@ import React from "react";
 import Scroll from './Scroll';
 
 import Intro from "../Home/Home";
+import PreSkill from "../Break/PreSkill";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
 import Projects from "../Project/Projects";
@@ -23,6 +24,7 @@ const Wrapper = () => {
             <Main>
             <Scroll components={[
                 <Intro />,
+                <PreSkill />,
                 <Skill />,
                 <Projects />,
                 <Resume />,
