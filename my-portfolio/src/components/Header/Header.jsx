@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Home from "../Home/Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
-import Project from "../Project/Project";
+import Projects from "../Project/Projects";
 import Contact from "../Contact/Contact";
 
 /**
@@ -25,7 +25,7 @@ const Header = ({ clickHandler }) => {
   const navigationButtons = [
     { label: 'Home', component: Home },
     { label: 'Skills', component: Skill },
-    { label: 'Projects', component: Project },
+    { label: 'Projects', component: Projects },
     { label: 'Resume', component: Resume },
     { label: 'Contact', component: Contact },
   ];

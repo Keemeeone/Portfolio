@@ -10,7 +10,7 @@ import Scroll from './Scroll';
 import Intro from "../Home/Home";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
-import Project from "../Project/Project";
+import Projects from "../Project/Projects";
 import Contact from "../Contact/Contact";
 import Main from "./Main";
 
@@ -24,7 +24,7 @@ const Wrapper = () => {
             <Scroll components={[
                 <Intro />,
                 <Skill />,
-                <Project />,
+                <Projects />,
                 <Resume />,
                 <Contact />,
             ]} /> 
