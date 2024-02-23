@@ -11,6 +11,7 @@ import Intro from "../Home/Home";
 import PreSkill from "../Break/PreSkill";
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
+import PreProject from "../Break/PreProject";
 import Projects from "../Project/Projects";
 import Contact from "../Contact/Contact";
 import Main from "./Main";
@@ -26,6 +27,7 @@ const Wrapper = () => {
                 <Intro />,
                 <PreSkill />,
                 <Skill />,
+                <PreProject />,
                 <Projects />,
                 <Resume />,
                 <Contact />,

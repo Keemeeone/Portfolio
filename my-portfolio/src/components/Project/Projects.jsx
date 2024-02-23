@@ -1,25 +1,27 @@
-// Project.jsx
+// Projects.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
 
-import React from "react";
+import React, { useState } from "react";
 import {
-    Container,
-    Typography,
-    useTheme,
+    Typography, useTheme,
     useMediaQuery,
     responsiveFontSizes,
+    Container,
     ThemeProvider,
+    Box
 } from "@mui/material";
-import Carousel from "react-material-ui-carousel";
+import { motion, AnimatePresence } from "framer-motion";
 import Project from "./Project";
+import "./Projects.css";
 
 const projectsData = [
     {
         id: 1,
-        title: "College Mate App",
+        icon: "🧑‍🎓",
+        title: "College Mate",
         role: "Frontend Developer",
         description:
             "I forged the front-end of College Mate, a University of Wisconsin–Madison app fostering student connections. Building with React, React Native, RESTful APIs, TypeScript, and HTML/CSS, I crafted user-friendly interfaces and engaging features. My focus on responsiveness ensured College Mate shines on any device, while pre-rendered wrapper pages slashed initial load times by 40% – all to get users interacting in a blink.",
@@ -32,6 +34,7 @@ const projectsData = [
     },
     {
         id: 2,
+        icon: "🗺️",
         title: "Wisconsin SCO",
         role: "Backend Developer",
         description:
@@ -40,6 +43,7 @@ const projectsData = [
     },
     {
         id: 3,
+        icon: "👨‍🚀",
         title: "Portfolio",
         role: "Web Developer",
         description:
@@ -55,33 +59,46 @@ const projectsData = [
 ];
 
 /**
- * Project component displaying a carousel of project information, including title, role, description, images, and demo link.
+ * Functional component representing a project display.
  */
 const Projects = () => {
+
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
+    const [selectedTab, setSelectedTab] = useState(projectsData[0]);
+
     return (
         <ThemeProvider theme={responsiveTheme}>
-            <Container>
-                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+            <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={isSmallScreen ? 10 : 5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     PROJECTS
                 </Typography>
-                <Carousel
-                    autoPlay={true}
-                    animation="slide"
-                    timeout={600}
-                    navButtonsAlwaysVisible
-                    indicators={true}
-                >
-                    {projectsData.map((project) => (
-                        <Project key={project.id} project={project} projectsData={projectsData}/>
-                    ))}
-                </Carousel>
+                <Box className="window tabs">
+                    <nav className="nav">
+                        <ul className="ul">
+                            {projectsData.map((item) => (
+                                <Box className={`lis ${item === selectedTab ? "selected" : ""}`} key={item.id}>
+                                    <li onClick={() => setSelectedTab(item)}>
+                                        {`${item.icon} ${item.title}`}
+                                        {item === selectedTab ? (
+                                            <motion.div className="underline" layoutId="underline" />
+                                        ) : null}
+                                    </li>
+                                </Box>
+                            ))}
+                        </ul>
+                    </nav>
+                    <Box>
+                        <AnimatePresence mode="wait">
+                            <Project selectedTab={selectedTab} projectsData={projectsData} />
+                        </AnimatePresence>
+                    </Box>
+                </Box>
             </Container>
         </ThemeProvider>
     );
-};
+}
 
 export default Projects;

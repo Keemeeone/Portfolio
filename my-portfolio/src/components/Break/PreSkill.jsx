@@ -1,8 +1,23 @@
+// PreSkill.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: MIT
+*/
+
 import { useEffect } from "react";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 import { wrap } from "@motionone/utils";
 import { Typography, useTheme, useMediaQuery } from "@mui/material";
 
+/**
+ * ParallaxText component for displaying text with parallax effect.
+ *
+ * @param {Object} props - Component properties.
+ * @param {ReactNode} props.children - Text content to be displayed.
+ * @param {number} [props.baseVelocity=100] - Base velocity for parallax effect.
+ * @param {number} props.scrollPosition - Current scroll position for parallax calculation.
+ * @returns {JSX.Element} - ParallaxText component JSX.
+ */
 function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
     const baseX = useMotionValue(0);
 
@@ -38,11 +53,18 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
     );
 }
 
-export default function ProSkill({ scrollPosition, activeIndex }) {
+/**
+ * PreSkill component displaying parallax text sections.
+ *
+ * @param {Object} props - Component properties.
+ * @param {number} props.scrollPosition - Current scroll position for parallax calculation.
+ * @returns {JSX.Element} - ProSkill component JSX.
+ */
+export default function PreSkill({ scrollPosition }) {
     return (
         <section style={{paddingTop:'10rem'}}>
-            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={-6}>LET'S</ParallaxText>
-            <ParallaxText scrollPosition={scrollPosition} activeIndex={activeIndex} baseVelocity={6}>START!</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={-10}>LET'S</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={10}>START!</ParallaxText>
         </section>
     );
 }

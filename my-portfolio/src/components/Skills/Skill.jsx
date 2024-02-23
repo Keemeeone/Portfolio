@@ -12,37 +12,24 @@ import { Container, Typography, Grid, useTheme, useMediaQuery, responsiveFontSiz
  * Skill component displaying the user's skills.
  */
 const skillsData = [
-    { id: 1, category: "Language", skills: [
-        { name: "JavaScript", image: "./javascript.svg" },
-        { name: "Java", image: "./java.svg" },
-        { name: "C", image: "./c.svg" },
-        { name: "Python", image: "./python.svg" },
-        { name: "TypeScript", image: "./typescript.svg" },
-        // { name: "R", image: "path/to/r-image.jpg" },
-    ] },
-    { id: 2, category: "Markup", skills: [
-        { name: "HTML5", image: "./html.svg" },
-        { name: "CSS3", image: "./css.svg" },
-    ] },
-    { id: 3, category: "Data", skills: [
-        { name: "MySQL", image: "./mysql.svg" },
-        { name: "JSON", image: "./json.svg" },
-    ] },
-    { id: 4, category: "Framework", skills: [
-        { name: "React", image: "./react.svg" },
-        { name: "FastAPI", image: "./fastapi.svg" },
-        { name: "Node.js", image: "./nodejs.svg" },
-    ] },
-    { id: 5, category: "Tool", skills: [
-        { name: "Postman", image: "./postman.svg" },
-        { name: "Git", image: "./git.svg" },
-        { name: "Github", image: "./github.svg" },
-        { name: "Linux", image: "./linux.svg" },
-        { name: "Jira", image: "./jira.svg" },
-    ] },
-    { id: 6, category: "Design", skills: [
-        { name: "Figma", image: "./figma.svg" },
-    ] },
+    { name: "JavaScript", image: "./javascript.svg" },
+    { name: "Java", image: "./java.svg" },
+    { name: "C", image: "./c.svg" },
+    { name: "Python", image: "./python.svg" },
+    { name: "TypeScript", image: "./typescript.svg" },
+    { name: "HTML5", image: "./html.svg" },
+    { name: "CSS3", image: "./css.svg" },
+    { name: "MySQL", image: "./mysql.svg" },
+    { name: "JSON", image: "./json.svg" },
+    { name: "React", image: "./react.svg" },
+    { name: "FastAPI", image: "./fastapi.svg" },
+    { name: "Node.js", image: "./nodejs.svg" },
+    { name: "Postman", image: "./postman.svg" },
+    { name: "Git", image: "./git.svg" },
+    { name: "Github", image: "./github.svg" },
+    { name: "Linux", image: "./linux.svg" },
+    { name: "Jira", image: "./jira.svg" },
+    { name: "Figma", image: "./figma.svg" },
 ];
 
 const Skill = ({ activeIndex }) => {
@@ -63,36 +50,24 @@ const Skill = ({ activeIndex }) => {
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container>
-                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center", }}>
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={isSmallScreen ? 5 : 15} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center", }}>
                     SKILLS
                 </Typography>
 
-                {/* {!userStartedClicking && <Alert severity="info" sx={{ backgroundColor: '#286346', color: '#FFF' }}>Try to Hover Mouse On Icons!</Alert>} */}
-
                 <Grid container spacing={1}>
-                    {skillsData.map((category) => (
-                        <Grid item key={category.id} xs={2} sm={6} md={4}>
-                            <Typography color={'#FFF'} fontWeight={"bold"} mb={1} textAlign={"center"} sx={{ fontSize: { xs: '12px', sm: '14px', md: '20px' } }}>
-                                {/* {category.category} */}
-                            </Typography>
-                            <Grid container spacing={1}>
-                                {category.skills.map((skill, skillIndex) => (
-                                    <Grid
-                                        item
-                                        key={skillIndex}
-                                        xs={8}
-                                        sm={4}
-                                        md={6}
-                                        // onClick={handleCardClick}
-                                        // onTouchStart={handleTouchStart}
-                                    // sx={{transition:"transform 0.3s ease", transform: activeIndex !== 1 ? "rotateZ(15deg)" : ''}}
-                                    >
-                                        <SkillCard skill={skill} />
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Grid>
-                    ))}
+                        <Grid container spacing={1}>
+                            {skillsData.map((skill, skillIndex) => (
+                                <Grid
+                                    item
+                                    key={skillIndex}
+                                    xs={4}
+                                    sm={4}
+                                    md={2}
+                                >
+                                    <SkillCard skill={skill} />
+                                </Grid>
+                            ))}
+                    </Grid>
                 </Grid>
             </Container>
         </ThemeProvider>

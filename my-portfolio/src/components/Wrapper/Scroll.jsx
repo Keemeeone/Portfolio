@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 import Header from "../Header/Header";
 import Motion from "./Motion";
@@ -21,23 +21,23 @@ const Scroll = ({ components }) => {
 
     const scrollRef = useRef();
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (scrollRef.current) {
-                const componentHeight = scrollRef.current.clientHeight;
-                const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
-                setActiveIndex(newIndex);
-            }
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         if (scrollRef.current) {
+    //             const componentHeight = scrollRef.current.clientHeight;
+    //             const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
+    //             setActiveIndex(newIndex);
+    //         }
+    //     };
 
-        if (scrollRef.current) {
-            window.addEventListener("resize", handleResize);
+    //     if (scrollRef.current) {
+    //         window.addEventListener("resize", handleResize);
 
-            return () => {
-                window.removeEventListener("resize", handleResize);
-            };
-        }
-    }, []);
+    //         return () => {
+    //             window.removeEventListener("resize", handleResize);
+    //         };
+    //     }
+    // }, []);
 
     const handleScroll = () => {
         if (scrollRef.current) {
@@ -56,7 +56,7 @@ const Scroll = ({ components }) => {
         if (scrollRef.current) {
             const componentHeight = scrollRef.current.clientHeight;
             const distanceToComponent = Math.abs(scrollPosition - index * componentHeight);
-            const maxDistance = componentHeight * 0.4;
+            const maxDistance = componentHeight * 0.6;
 
             // Calculate opacity based on the distance to the component
             const opacity = 1 - Math.min(distanceToComponent / maxDistance, 1);

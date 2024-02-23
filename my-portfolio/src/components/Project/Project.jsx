@@ -1,3 +1,4 @@
+// Project.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
@@ -5,8 +6,17 @@ SPDX-License-Identifier: MIT
 
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { motion } from "framer-motion";
 
-const Project = ({ project,projectsData}) => {
+/**
+ * Functional component representing a project display.
+ *
+ * @param {Object} props - Component properties.
+ * @param {Object} props.selectedTab - Currently selected tab with project details.
+ * @param {Array} props.projectsData - Array of project data.
+ * @returns {JSX.Element} - Project component JSX.
+ */
+const Project = ({ selectedTab, projectsData }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -17,90 +27,88 @@ const Project = ({ project,projectsData}) => {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-
+    
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
-        }, 2000);
+        }, 1000);
 
         return () => clearInterval(intervalId);
     }, [projectsData]);
+
     return (
-        <Box
-            key={project.id}
-            sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-            }}
+        <motion.div
+            key={selectedTab ? selectedTab.id : 'empty'}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onTouchStart={handleMouseEnter}
+            onTouchEnd={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
         >
             <img
-                alt={project.title}
-                src={
-                    project.imageUrls[currentImageIndex] || project.imageUrls[0]
-                }
+                alt={selectedTab.title}
+                src={selectedTab.imageUrls[currentImageIndex] || selectedTab.imageUrls[0]}
                 style={{
-                    minHeight: "0",
-                    height: "100%",
-                    minWidth: "0",
-                    width: "100%",
-                    maxWidth: "80%",
-                    border: "1px solid #65f9af",
-                    borderRadius: "10px",
-                    position: "relative",
-                    opacity: isHovered ? 0.1 : 1,
+                    minHeight: '0',
+                    height: '100%',
+                    minWidth: '0',
+                    width: '100%',
+                    maxWidth: '100%',
+                    borderRadius: '10px',
+                    position: 'relative',
+                    opacity: isHovered ? 0.02 : 1,
                 }}
             />
             {isHovered && (
-                <Box
-                    sx={{
-                        textAlign: "center",
-                        position: "absolute",
-                        maxWidth: "70%",
-                    }}
-                >
+                <Box style={{ position: 'absolute', width: '70%' }}>
                     <Typography
-                        color={"#FFF"}
-                        fontWeight={"bold"}
-                        textAlign={"center"}
+                        color={'#FFF'}
+                        fontWeight={'bold'}
+                        textAlign={'center'}
                         mb={2}
                         sx={{
-                            fontSize: { xs: "8px", sm: "14px", md: "20px" },
+                            fontSize: { xs: '8px', sm: '14px', md: '20px' },
                         }}
                     >
-                        {project.title}
+                        {selectedTab.title}
                     </Typography>
                     <Typography
-                        color={"#FFF"}
-                        fontWeight={"bold"}
-                        textAlign={"center"}
+                        color={'#FFF'}
+                        fontWeight={'bold'}
+                        textAlign={'center'}
                         variant="body2"
-                        sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                        sx={{ fontSize: { xs: '6px', sm: '14px' } }}
                     >
-                        {project.role}
+                        {selectedTab.role}
                     </Typography>
                     <Typography
-                        color={"#FFF"}
+                        color={'#FFF'}
                         variant="body2"
-                        textAlign={"center"}
+                        textAlign={'center'}
                         mb={2}
-                        sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                        sx={{ fontSize: { xs: '6px', sm: '14px' } }}
                     >
-                        {project.description}
+                        {selectedTab.description}
                     </Typography>
-                    <Box sx={{ marginTop: "auto", textAlign: "center" }}>
-                        {project.demoLink ? (
+                    <Box sx={{ marginTop: 'auto', textAlign: 'center' }}>
+                        {selectedTab.demoLink ? (
                             <Button
-                                href={project.demoLink}
+                                href={selectedTab.demoLink}
                                 variant="contained"
                                 target="_blank"
                                 sx={{
-                                    fontSize: { xs: "8px", sm: "14px" },
-                                    backgroundColor: "#65f9af",
-                                    color: "#327C57",
+                                    fontSize: { xs: '8px', sm: '14px' },
+                                    backgroundColor: '#65f9af',
+                                    color: '#327C57',
                                 }}
                             >
                                 Demo
@@ -108,10 +116,10 @@ const Project = ({ project,projectsData}) => {
                         ) : (
                             <Typography
                                 variant="body2"
-                                color={"#FFF"}
-                                textAlign={"center"}
+                                color={'#FFF'}
+                                textAlign={'center'}
                                 mb={2}
-                                sx={{ fontSize: { xs: "6px", sm: "14px" } }}
+                                sx={{ fontSize: { xs: '6px', sm: '14px' } }}
                             >
                                 Demo Not Available
                             </Typography>
@@ -119,7 +127,7 @@ const Project = ({ project,projectsData}) => {
                     </Box>
                 </Box>
             )}
-        </Box>
+        </motion.div>
     );
 };
 

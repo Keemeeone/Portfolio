@@ -25,9 +25,9 @@ const Header = ({ clickHandler }) => {
   const navigationButtons = [
     { id: 0, label: 'Home', component: Home },
     { id: 2, label: 'Skills', component: Skill },
-    { id: 3, label: 'Projects', component: Projects },
-    { id: 4, label: 'Resume', component: Resume },
-    { id: 5, label: 'Contact', component: Contact },
+    { id: 4, label: 'Projects', component: Projects },
+    { id: 5, label: 'Resume', component: Resume },
+    { id: 6, label: 'Contact', component: Contact },
   ];
 
   const openMenu = (event) => {
