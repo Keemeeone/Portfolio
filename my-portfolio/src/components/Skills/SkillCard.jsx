@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 */
 
 import React, { useState } from 'react';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 
 /**
  * Functional component representing a skill card with interactive animation.

@@ -10,26 +10,26 @@
     "@mui/icons-material": "^5.15.5",
     "@mui/lab": "^5.0.0-alpha.165",
     "@mui/material": "^5.15.9",
-    "@react-spring/web": "^9.7.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
+    "crypto-browserify": "^3.12.0",
     "dotenv": "^16.4.5",
-    "express": "^4.18.2",
+    "eslint-config-react-app": "^7.0.1",
     "framer-motion": "^11.0.3",
-    "openai": "^4.28.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
-    "react-material-ui-carousel": "^3.4.2",
     "react-particles": "^2.12.2",
     "react-router-dom": "^6.21.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-typed": "^2.0.12",
-    "react-use-gesture": "^9.1.3",
     "tsparticles-slim": "^2.12.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "browserslist": "^4.23.0",
+    "eslint": "^8.57.0"
   }
 }
