@@ -21,7 +21,7 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition, img }) {
 
     useEffect(() => {
         const updateX = () => {
-            baseX.set((scrollPosition / 1000) * baseVelocity);
+            baseX.set((scrollPosition / 1400) * baseVelocity);
         };
 
         updateX();
@@ -67,7 +67,7 @@ export default function PreProject({ scrollPosition }) {
         <section>
             <ParallaxText scrollPosition={scrollPosition} baseVelocity={40} img="./astronaut.png?as=webp" />
             <ParallaxText scrollPosition={scrollPosition} baseVelocity={-6}>MOUSEOVER</ParallaxText>
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={10}> IMAGE</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={6}>THE IMAGE</ParallaxText>
         </section>
     );
 }

@@ -72,7 +72,7 @@ const HexagonImage = styled('img')`
   z-index: 2;
   transition: transform 0.5s ease; // Add a transition for the transform property
 
-  ${({ activeIndex }) => activeIndex <= 4 && `
+  ${({ activeIndex }) => activeIndex <= 7 && `
     transform: rotateY(180deg) perspective(1000px);
   `}
 `;

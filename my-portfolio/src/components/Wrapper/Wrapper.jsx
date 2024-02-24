@@ -14,6 +14,8 @@ import Resume from "../Resume/Resume";
 import PreProject from "../Break/PreProject";
 import Projects from "../Project/Projects";
 import Contact from "../Contact/Contact";
+import AIchat from "../AIchat/AIchat"; 
+import PreAI from "../Break/PreAI";
 import Main from "./Main";
 
 /**
@@ -25,6 +27,8 @@ const Wrapper = () => {
             <Main>
             <Scroll components={[
                 <Intro />,
+                <PreAI />,
+                <AIchat />,
                 <PreSkill />,
                 <Skill />,
                 <PreProject />,

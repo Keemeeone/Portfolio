@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Home from "../Home/Home";
+import AIChat from '../AIchat/AIchat';
 import Skill from "../Skills/Skill";
 import Resume from "../Resume/Resume";
 import Projects from "../Project/Projects";
@@ -24,10 +25,11 @@ const Header = ({ clickHandler }) => {
 
   const navigationButtons = [
     { id: 0, label: 'Home', component: Home },
-    { id: 2, label: 'Skills', component: Skill },
-    { id: 4, label: 'Projects', component: Projects },
-    { id: 5, label: 'Resume', component: Resume },
-    { id: 6, label: 'Contact', component: Contact },
+    { id: 2, label: 'AIChat', component: AIChat },
+    { id: 4, label: 'Skills', component: Skill },
+    { id: 6, label: 'Projects', component: Projects },
+    { id: 7, label: 'Resume', component: Resume },
+    { id: 8, label: 'Contact', component: Contact },
   ];
 
   const openMenu = (event) => {
@@ -39,7 +41,7 @@ const Header = ({ clickHandler }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: 'transparent', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: '#0A1811', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's

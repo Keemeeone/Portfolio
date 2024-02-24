@@ -25,7 +25,7 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
 
     useEffect(() => {
         const updateX = () => {
-            baseX.set((scrollPosition/1000) * baseVelocity);
+            baseX.set((scrollPosition/1200) * baseVelocity);
         };
 
         updateX();
@@ -63,8 +63,8 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition }) {
 export default function PreSkill({ scrollPosition }) {
     return (
         <section style={{paddingTop:'10rem'}}>
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={-10}>LET'S</ParallaxText>
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={10}>START!</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={-6}>LET'S</ParallaxText>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={6}>START!</ParallaxText>
         </section>
     );
 }
