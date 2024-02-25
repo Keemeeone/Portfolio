@@ -4,8 +4,6 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 
-const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-
 const systemMessage = {
     "role": "system",
     "content": [
@@ -70,6 +68,7 @@ function AIChat() {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
+
     }, [messages]);
 
     async function messageChatGPT(chatMessages) {
@@ -92,7 +91,7 @@ function AIChat() {
             {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + API_KEY,
+                    "Authorization": "Bearer " + String.fromCharCode(...API_KEY),
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(apiRequestBody)
