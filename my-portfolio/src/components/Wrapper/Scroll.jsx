@@ -147,13 +147,14 @@ const Scroll = ({ components }) => {
                     bottom: "20px",
                     right: "20px",
                     cursor: "pointer",
-                    zIndex: 1000,
+                    zIndex: 1,
                     color: "#FFF",
                     animation: "bounce 2s infinite",
+                    overflow:'hidden'
                 }}
                 onClick={moveToTop}
             >
-                <ArrowCircleUpIcon sx={{ fontSize: 30 }}/>
+                <ArrowCircleUpIcon sx={{ fontSize: {xs:25, md:30} }}/>
             </div>
         </div>
     );

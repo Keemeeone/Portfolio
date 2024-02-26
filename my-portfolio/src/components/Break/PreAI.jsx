@@ -21,33 +21,34 @@ import { Typography, useTheme, useMediaQuery } from "@mui/material";
  */
 function ParallaxText({ children, baseVelocity = 100, scrollPosition, img }) {
     const baseX = useMotionValue(0);
+    const baseY = useMotionValue(0);
 
     const x = useTransform(baseX, (v) => `${wrap(-50, 50, v)}%`);
+    const y = useTransform(baseY, (v) => `${wrap(0, 30, v)}%`);
 
     useEffect(() => {
-        const updateX = () => {
-            baseX.set((scrollPosition / 1400) * baseVelocity);
+        const updatePosition = () => {
+            baseX.set((scrollPosition / 1000) * baseVelocity);
+            baseY.set((scrollPosition / 1000) * baseVelocity);
         };
 
-        updateX();
+        updatePosition();
 
-        // Add scroll event listener
-        window.addEventListener("scroll", updateX);
+        window.addEventListener("scroll", updatePosition);
 
         return () => {
-            // Remove scroll event listener on component unmount
-            window.removeEventListener("scroll", updateX);
+            window.removeEventListener("scroll", updatePosition);
         };
-    }, [scrollPosition, baseVelocity, baseX]);
+    }, [scrollPosition, baseVelocity, baseX, baseY]);
 
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflowX: 'hidden' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflowX: 'hidden', overflowY: 'hidden' }}>
             {img ? (
-                <motion.div style={{ x: x }}>
-                    <img src={img} alt="Parallax" style={{ width: isSmallScreen? '40%': '70%', height: 'auto' }} />
+                <motion.div style={{ x: x, y: y }}>
+                    <img src={img} alt="Parallax" style={{ width: '50%', height: 'auto' }} />
                 </motion.div>
             ) : (
                 <motion.div style={{ x: x, width: '100%' }}>
@@ -70,14 +71,12 @@ function ParallaxText({ children, baseVelocity = 100, scrollPosition, img }) {
 export default function PreAI({ scrollPosition }) {
     return (
         <section style={{}}>
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={-10}>BEFORE START</ParallaxText>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={-10} img="./astronaut2.png?as=webp" />
 
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={0}>CHAT WITH</ParallaxText>
-            <ParallaxText scrollPosition={scrollPosition} baseVelocity={40} img="./robot.png?as=webp" />
+            {/* <ParallaxText scrollPosition={scrollPosition} baseVelocity={-10}>BEFORE START</ParallaxText> */}
 
+            <ParallaxText scrollPosition={scrollPosition} baseVelocity={0}>TALK WITH</ParallaxText>
 
-            </div>
             <ParallaxText scrollPosition={scrollPosition} baseVelocity={10}>HEEWON'S AI</ParallaxText>
         </section>
     );

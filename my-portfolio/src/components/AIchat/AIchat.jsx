@@ -1,33 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { TextField, Container, Paper, Typography, Box, useTheme, useMediaQuery, responsiveFontSizes, Grid, ThemeProvider } from '@mui/material';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
+import { TextField, Container, Paper, Typography, Box, useTheme, useMediaQuery, responsiveFontSizes, Grid, ThemeProvider, Avatar } from '@mui/material';
+// import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 
 const systemMessage = {
     "role": "system",
     "content": [
+        "Your name is Wonny, and Heewon created you using OpenAI, Node.js, React, and JavaScript",
         "If the user greets, respond as well.",
         "You're an AI interviewing instead of me for a job.",
         "If the user asks about 'He', it is Heewon.",
         "Answer all questions in maximum 3 sentences.",
         "Remember about Heewon Kim",
-        "If the user asks questions other than about Heewon Heewon's experiences, or programming say, 'To best assist you, I'm prioritizing inquiries related to Heewon's experiences. Is there anything specific about Heewon that you would like to know?'",
+        "Please note that this is not a requirement but a suggestion for better assistance. If the user asks questions other than about Heewon's experiences, or programming, you can say 'To best assist you, I'm prioritizing inquiries related to Heewon's experiences. Is there anything specific about Heewon that you would like to know?'",
         "If the user adds ! in front of the question, you must answer any question other than about Heewon.",
         "An ambitious and detail-oriented software developer, can be reached via email at khw0285@gmail.com. His professional profile can be viewed on LinkedIn (https://www.linkedin.com/in/heewon-kim-hkim/) and his projects are showcased on GitHub (https://github.com/Keemeeone). A comprehensive portfolio is available at https://keemeeone.github.io/.",
         "In summary, Heewon is a highly motivated individual with excellent communication skills, dedicated to fostering innovation. Proficient in various tools and languages including Java, C, Python, JavaScript, TypeScript, HTML5, CSS, MySQL, React, React-Native, Node.js, Postman, Git, Linux, Figma, FastAPI, JSON, pgAdmin, Jira, Agile, Scrum, Web Development, he excels in collaborative environments and has a proven track record of driving projects from concept to completion.",
         "Heewon's experiences include a role as a Back-end Developer at the Wisconsin State Cartographer's Office, where he implemented an intuitive map interface and transformed complex XML files into accessible formats, significantly improving data accessibility. He also developed a FastAPI endpoint and an accurate URL retrieval system.",
-        "As the Co-Founder and Front-end Developer of the College Mate App, Heewon designed user-friendly interfaces, implemented interactive features using React and React Native, and optimized page load times by 40%. In addition, he co-founded the Google Developer Club, organizing workshops and fostering a collaborative and innovative community.",
+        "As the Co-Founder and Front-end Developer of the College Mate, Heewon designed user-friendly interfaces, implemented interactive features using React and React Native, and optimized page load times by 40%. In addition, he co-founded the Google Developer Club, organizing workshops and fostering a collaborative and innovative community.",
+        // "Whie working on College Mate project, to create a user-friendly interface, responsive design principles were implemented to ensure a seamless experience across diverse devices, utilizing technologies such as React, React Native, RESTful APIs, TypeScript, and HTML/CSS. Heewon's emphasis on responsive design enhanced the overall user experience and contributed to the success of the 'College Mate' app in building a cohesive and connected community. Moreover, Heewon reduced initial page load times by 40%, implementing pre-rendered lightweight wrapper pages to ensure users can access all the pages within 2 seconds. This commitment demonstrates not only Heewon's technical skills but also dedication to creating valuable solutions for users.",        
         "In the role of Product Manager and Back-end Developer at With U, Heewon led the development of a community app dedicated to saving abandoned dogs. He ensured seamless back-end operations, forged strong partnerships, and created a user experience aligned with the app's mission. At the CheeseHacks Hackathon, Heewon served as the Lead Developer (Front-end), collaboratively creating an interactive web application that enhanced understanding of front-end and back-end interactions.",
+        "In his most recent role as a Back-end Developer at the Wisconsin State Cartographer's Office, Heewon significantly enhanced the website's user accessibility by implementing and developing an intuitive map-based interface and a versatile XML feature. He utilized Python for these projects, which provided him with valuable insights into the importance of efficient coding practices. To aid API developers in quickly finding the information they need, he built clear data formats using Python. These data formats extracted and organized data from over 2,000 complex XML files, making note navigation significantly easier and more intuitive. This replaced the complex township system, making it accessible to all developers and resulting in a 30% reduction in development time. This project also demonstrated the value of Agile Methodology. Heewon's proficiency in Agile and understanding of efficient coding practices position him well to contribute to software development as part of the Division of Motor Vehicles.",
         "Heewon holds a Bachelor of Computer Science from the University of Wisconsin - Madison, completing relevant courses in object-oriented programming, data structures, machine organization, operating systems, and more. He also attended Madison Area Technical College from September 2019 to December 2020.",
         "Heewon has an OPT (F-1) visa, which will start at the end of February 2024, and the STEM OPT can possibly be extended after three years.",
-    ]
+        "If the user ask about 'Daeun', say them 'She is a cancer biology Ph.D, can eat 71 pieces of sushi, and has a boyfriend. She is confident that her boyfriend loves her a lot.'"
+    ] 
 };
 
 function AIChat() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
+    const [api, setApi] = useState('');
+
     const [messages, setMessages] = useState([
         {
             message: "Hello, feel free to ask me anything about Heewon!",
@@ -35,6 +41,7 @@ function AIChat() {
             sender: "AI"
         }
     ]);
+
     const [isTyping, setIsTyping] = useState(false);
     const [userInput, setUserInput] = useState('');
 
@@ -68,8 +75,42 @@ function AIChat() {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
-
+        // const Api = () => {
+        //     fetch(`http://localhost:3001/get-api-key`, {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         }
+        //     }).then(res => res.json()).then(json => {
+        //         setApi(json.messages)
+        //     })
+        // };
+        const fetchData = async () => {
+            try {
+              const response = await fetch('https://restful-api.fly.dev/get-api-key', {
+                method: "GET",
+                headers: {
+                    // 'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': process.env.REACT_APP_TOKEN_SECRET,
+                },
+                // credentials: 'include',
+              });
+      
+              if (!response.ok) {
+                throw new Error(`Error: ${response.status} - ${response.statusText}`);
+              }
+              console.log("Fetch enabled")
+              const data = await response.json();
+              setApi(data);
+            } catch (error) {
+              console.error('Error fetching API key:', error.message);
+            }
+          };
+      
+          fetchData();
+        //   console.log("api",api.apiKey)
     }, [messages]);
+
 
     async function messageChatGPT(chatMessages) {
 
@@ -84,21 +125,21 @@ function AIChat() {
                 { ...systemMessage, content: systemMessage.content.join(' ') },
                 ...apiMessages
             ],
-            "max_tokens": 150 
+            "max_tokens": 150
         };
 
         await fetch("https://api.openai.com/v1/chat/completions",
             {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer " + String.fromCharCode(...API_KEY),
+                    "Authorization": "Bearer " + api.apiKey,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(apiRequestBody)
             }).then((data) => data.json())
             .then((data) => {
                 console.log(data);
-console.log(data.choices);
+                console.log(data.choices);
 
                 setMessages([...chatMessages, {
                     message: data.choices[0].message.content,
@@ -115,11 +156,11 @@ console.log(data.choices);
                     CHAT WITH AI
                 </Typography>
                 <Paper style={{ width: '80%', scrollSnapType: 'y' }}>
-                    <Paper elevation={0} style={{ marginTop: '2vh', padding: "20px", height: '40vh', overflowY: 'scroll', backgroundColor: '#FFF' }} ref={chatContainerRef}>
+                    <Paper elevation={0} style={{ marginTop: '2vh', padding: "20px", height: isSmallScreen ? '30vh' : '40vh', overflowY: 'scroll', backgroundColor: '#FFF' }} ref={chatContainerRef}>
                         <Box sx={{ height: '100%' }}>
                             {messages.map((message, i) => (
-                                <Box key={i}>
                                     <Box
+                                    key={i}
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -127,7 +168,7 @@ console.log(data.choices);
                                         }}
                                     >
                                         <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                            {message.sender === 'user' ? <PersonIcon sx={{ color: '#236a46' }} /> : <SmartToyIcon sx={{ color: '#236a46' }} />}
+                                            {message.sender === 'user' ? <PersonIcon sx={{ color: '#236a46' }} /> : <Avatar src={'./developerIcon.png'} sx={{ width: isSmallScreen? 30:45, height: isSmallScreen? 30:45, backgroundColor: '' }} /> }
                                         </Typography>
                                         <Paper
                                             elevation={5}
@@ -142,7 +183,6 @@ console.log(data.choices);
                                             </Typography>
                                         </Paper>
                                     </Box>
-                                </Box>
                             ))}
                         </Box>
                     </Paper>
@@ -166,15 +206,14 @@ console.log(data.choices);
                                 />
                             </Grid>
                             <Grid item xs={1} sm={1}>
-                                <SendIcon onClick={handleSend} sx={{ margin: "4px", color: '#236a46', cursor: 'pointer', fontSize: isSmallScreen ? "1em" : "1.5em" }} />
+                                <SendIcon onClick={handleSend} sx={{ color: '#236a46', cursor: 'pointer', fontSize: isSmallScreen ? "1em" : "1.5em", }} />
                             </Grid>
                         </Grid>
+                        {isTyping && <Typography style={{ color: '#236a46', fontWeight: 'bold', fontSize: isSmallScreen ? "0.5em" : "1em", }}>AI is typing...</Typography>}
                     </Box>
-                    {isTyping && <Typography style={{ margin: "8px", color: '#236a46', fontWeight: 'bold' }}>AI is typing...</Typography>}
                 </Paper>
-                <Typography color={'#FFF'} style={{ fontSize: isSmallScreen ? ".5em" : "0.5em", textAlign: 'right' }}>
-                    E
-                </Typography>
+                {/* <Typography color={'#FFF'} style={{ fontSize: isSmallScreen ? ".5em" : "0.5em", textAlign: 'right' }}>
+                </Typography> */}
             </Container>
         </ThemeProvider>
     );
