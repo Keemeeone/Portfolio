@@ -27,7 +27,7 @@ const Project = ({ selectedTab, projectsData }) => {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-    
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % projectsData.length);

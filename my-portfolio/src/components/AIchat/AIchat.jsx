@@ -1,6 +1,11 @@
+// AIchat.jsx
+/*
+SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
+SPDX-License-Identifier: MIT
+*/
+
 import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Container, Paper, Typography, Box, useTheme, useMediaQuery, responsiveFontSizes, Grid, ThemeProvider, Avatar } from '@mui/material';
-// import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -25,9 +30,23 @@ const systemMessage = {
         "Heewon holds a Bachelor of Computer Science from the University of Wisconsin - Madison, completing relevant courses in object-oriented programming, data structures, machine organization, operating systems, and more. He also attended Madison Area Technical College from September 2019 to December 2020.",
         "Heewon has an OPT (F-1) visa, which will start at the end of February 2024, and the STEM OPT can possibly be extended after three years.",
         "If the user ask about 'Daeun', say them 'She is a cancer biology Ph.D, can eat 71 pieces of sushi, and has a boyfriend. She is confident that her boyfriend loves her a lot.'"
-    ] 
+    ]
 };
 
+
+/**
+ * AIChat Component
+ * 
+ * This component represents a chat interface with an AI assistant powered by OpenAI's GPT-3.5-turbo model.
+ * Users can interact with the assistant, and the conversation is displayed in the chat window.
+ * 
+ * @component
+ * @example
+ * // Example usage of AIChat component
+ * <AIChat />
+ * 
+ * @returns {JSX.Element} Returns the JSX element for the AIChat component.
+ */
 function AIChat() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -75,40 +94,29 @@ function AIChat() {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
-        // const Api = () => {
-        //     fetch(`http://localhost:3001/get-api-key`, {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         }
-        //     }).then(res => res.json()).then(json => {
-        //         setApi(json.messages)
-        //     })
-        // };
         const fetchData = async () => {
             try {
-              const response = await fetch('https://restful-api.fly.dev/get-api-key', {
-                method: "GET",
-                headers: {
-                    // 'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'api-key': process.env.REACT_APP_TOKEN_SECRET,
-                },
-                // credentials: 'include',
-              });
-      
-              if (!response.ok) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`);
-              }
-              console.log("Fetch enabled")
-              const data = await response.json();
-              setApi(data);
+                const response = await fetch('https://restful-api.fly.dev/get-api-key', {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': process.env.REACT_APP_TOKEN_SECRET,
+                    },
+                    // credentials: 'include',
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+                console.log("Fetch enabled")
+                const data = await response.json();
+                setApi(data);
             } catch (error) {
-              console.error('Error fetching API key:', error.message);
+                console.error('Error fetching API key:', error.message);
             }
-          };
-      
-          fetchData();
-        //   console.log("api",api.apiKey)
+        };
+
+        fetchData();
     }, [messages]);
 
 
@@ -159,30 +167,30 @@ function AIChat() {
                     <Paper elevation={0} style={{ marginTop: '2vh', padding: "20px", height: isSmallScreen ? '30vh' : '40vh', overflowY: 'scroll', backgroundColor: '#FFF' }} ref={chatContainerRef}>
                         <Box sx={{ height: '100%' }}>
                             {messages.map((message, i) => (
-                                    <Box
+                                <Box
                                     key={i}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        flexDirection: message.sender === 'user' ? 'row-reverse' : 'row',
+                                    }}
+                                >
+                                    <Box style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                        {message.sender === 'user' ? <PersonIcon sx={{ color: '#236a46' }} /> : <Avatar src={'./developerIcon.png'} sx={{ width: isSmallScreen ? 30 : 45, height: isSmallScreen ? 30 : 45, backgroundColor: '' }} />}
+                                    </Box>
+                                    <Paper
+                                        elevation={5}
                                         sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            flexDirection: message.sender === 'user' ? 'row-reverse' : 'row',
+                                            maxWidth: '70%',
+                                            marginBottom: '8px',
+                                            backgroundColor: '#C7ECDA'
                                         }}
                                     >
-                                        <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                            {message.sender === 'user' ? <PersonIcon sx={{ color: '#236a46' }} /> : <Avatar src={'./developerIcon.png'} sx={{ width: isSmallScreen? 30:45, height: isSmallScreen? 30:45, backgroundColor: '' }} /> }
+                                        <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: isSmallScreen ? "0.5em" : "1em", color: '#0a1811' }}>
+                                            {message.message}
                                         </Typography>
-                                        <Paper
-                                            elevation={5}
-                                            sx={{
-                                                maxWidth: '70%',
-                                                marginBottom: '8px',
-                                                backgroundColor: '#C7ECDA'
-                                            }}
-                                        >
-                                            <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: isSmallScreen ? "0.5em" : "1em", color: '#0a1811' }}>
-                                                {message.message}
-                                            </Typography>
-                                        </Paper>
-                                    </Box>
+                                    </Paper>
+                                </Box>
                             ))}
                         </Box>
                     </Paper>
@@ -212,8 +220,6 @@ function AIChat() {
                         {isTyping && <Typography style={{ color: '#236a46', fontWeight: 'bold', fontSize: isSmallScreen ? "0.5em" : "1em", }}>AI is typing...</Typography>}
                     </Box>
                 </Paper>
-                {/* <Typography color={'#FFF'} style={{ fontSize: isSmallScreen ? ".5em" : "0.5em", textAlign: 'right' }}>
-                </Typography> */}
             </Container>
         </ThemeProvider>
     );

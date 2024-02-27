@@ -22,84 +22,84 @@ const Contact = () => {
 
     return (
         <ThemeProvider theme={responsiveTheme}>
-                <Container
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        // alignItems: "center",
-                    }}
-                >
-                    <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                        CONTACT
-                    </Typography>
+            <Container
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    // alignItems: "center",
+                }}
+            >
+                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" sx={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                    CONTACT
+                </Typography>
 
-                    <List>
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <EmailIcon sx={{ color: '#FFF' }}/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={
-                                    <>
-                                        <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Email</Typography>
-                                        <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>khw0285@gmail.com</Typography>
-                                    </>
-                                }
-                            />
-                        </ListItem>
+                <List>
+                    <ListItem disableGutters>
+                        <ListItemIcon>
+                            <EmailIcon sx={{ color: '#FFF' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={
+                                <>
+                                    <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Email</Typography>
+                                    <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>khw0285@gmail.com</Typography>
+                                </>
+                            }
+                        />
+                    </ListItem>
 
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <PhoneIcon sx={{ color: '#FFF' }}/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={
-                                    <>
-                                        <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Phone</Typography>
-                                        <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>+1 (608) 471-8707</Typography>
-                                    </>
-                                }
-                            />
-                        </ListItem>
+                    <ListItem disableGutters>
+                        <ListItemIcon>
+                            <PhoneIcon sx={{ color: '#FFF' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={
+                                <>
+                                    <Typography variant="h6" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "1em" : "1.25em" }}>Phone</Typography>
+                                    <Typography variant="body1" color={'#FFF'} sx={{ fontSize: isSmallScreen ? "0.75em" : "1em" }}>+1 (608) 471-8707</Typography>
+                                </>
+                            }
+                        />
+                    </ListItem>
 
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <LinkedInIcon sx={{ color: '#FFF' }}/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={
-                                    <>
-                                        {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>LinkedIn</Typography> */}
-                                        <Typography variant="body1">
-                                            <Button href="https://www.linkedin.com/in/heewon-kim-hkim/" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color:'#FFF' }}>
-                                                LinkedIn
-                                            </Button>
-                                        </Typography>
-                                    </>
-                                }
-                            />
-                        </ListItem>
+                    <ListItem disableGutters>
+                        <ListItemIcon>
+                            <LinkedInIcon sx={{ color: '#FFF' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={
+                                <>
+                                    {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>LinkedIn</Typography> */}
+                                    <Typography variant="body1">
+                                        <Button href="https://www.linkedin.com/in/heewon-kim-hkim/" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color: '#FFF' }}>
+                                            LinkedIn
+                                        </Button>
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </ListItem>
 
-                        <ListItem disableGutters>
-                            <ListItemIcon>
-                                <GitHubIcon sx={{ color: '#FFF' }}/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={
-                                    <>
-                                        {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>GitHub</Typography> */}
-                                        <Typography variant="body1">
-                                            <Button href="https://github.com/Keemeeone" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color:'#FFF' }}>
-                                                GitHub Profile
-                                            </Button>
-                                        </Typography>
-                                    </>
-                                }
-                            />
-                        </ListItem>
-                    </List>
-                </Container>
-                <Footer />
+                    <ListItem disableGutters>
+                        <ListItemIcon>
+                            <GitHubIcon sx={{ color: '#FFF' }} />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={
+                                <>
+                                    {/* <Typography variant="h6" sx={{ fontSize: isSmallScreen ? "1em" : "1.25em"}}>GitHub</Typography> */}
+                                    <Typography variant="body1">
+                                        <Button href="https://github.com/Keemeeone" target="_blank" sx={{ fontSize: isSmallScreen ? "0.75em" : "1em", color: '#FFF' }}>
+                                            GitHub Profile
+                                        </Button>
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </ListItem>
+                </List>
+            </Container>
+            <Footer />
         </ThemeProvider>
     );
 };

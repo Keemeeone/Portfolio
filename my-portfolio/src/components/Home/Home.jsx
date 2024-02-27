@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 import React, { useEffect, useState } from "react";
 import { Container, Typography, createTheme, responsiveFontSizes, ThemeProvider, styled, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import {ReactTyped} from "react-typed"
+import { ReactTyped } from "react-typed"
 
 // Create a theme with responsive font sizes
 const theme = createTheme();
@@ -64,19 +64,6 @@ const Intro = ({ activeIndex }) => {
                 <Typography flex={1} variant="h3" fontWeight={"bold"} color="#FFF" align="center" mb={3} sx={{ transition: "transform 0.3s ease-in-out", transform: TTransform, zIndex: 1 }}>
                     Hello, I'm
                 </Typography>
-                {/* <Avatar
-                    alt="Heewon's Character"
-                    src="/developer.png?as=webp"
-                    loading="lazy"
-                    sx={{
-                        width: { xs: 150, sm: 200, md: 250 },
-                        height: { xs: 150, sm: 200, md: 250 },
-                        transition: "transform 0.6s ease-in-out",
-                        transform: avatarTransform,
-                        border: "5px solid #65f9af",
-                        borderRadius: "50%",
-                    }}
-                /> */}
                 <Box style={{ position: 'relative' }}>
                     <Hexagon sx={{ transition: "transform 0.3s ease-in-out", transform: avatarTransform, width: { xs: '30vw', md: '20vw' }, height: { xs: '30vw', md: '20vw' } }} />
 
@@ -85,11 +72,8 @@ const Intro = ({ activeIndex }) => {
                 <Typography variant="h1" fontWeight={"bold"} color="#FFF" align="center" mt={3} mb={3} sx={{ transition: "transform 0.9s ease-in-out", transform: nTransform, }}>
                     Heewon Kim
                 </Typography>
-                <ReactTyped strings={["I'm a passionate Software Developer. <br/> Explore my projects and skills to learn more about my possibility."]} typeSpeed={40} backSpeed={60} loop style={{color:"#FFF", fontWeight:'bold', textAlign:'center', transition: "transform 1.2s ease-in-out", transform: subTransform}}/>
+                <ReactTyped strings={["I'm a passionate Software Developer. <br/> Explore my projects and skills to learn more about my possibility."]} typeSpeed={40} backSpeed={60} loop style={{ color: "#FFF", fontWeight: 'bold', textAlign: 'center', transition: "transform 1.2s ease-in-out", transform: subTransform }} />
 
-                {/* <Typography variant="body1" align="center" color="#FFF" paragraph sx={{ transition: "transform 1.2s ease-in-out", transform: subTransform, }}>
-                    I'm a passionate Software Developer. Explore my projects and skills to learn more about my work.
-                </Typography> */}
                 <style>
                     {`
                         @keyframes bounce {

@@ -21,24 +21,6 @@ const Scroll = ({ components }) => {
 
     const scrollRef = useRef();
 
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         if (scrollRef.current) {
-    //             const componentHeight = scrollRef.current.clientHeight;
-    //             const newIndex = Math.floor(scrollRef.current.scrollTop / componentHeight);
-    //             setActiveIndex(newIndex);
-    //         }
-    //     };
-
-    //     if (scrollRef.current) {
-    //         window.addEventListener("resize", handleResize);
-
-    //         return () => {
-    //             window.removeEventListener("resize", handleResize);
-    //         };
-    //     }
-    // }, []);
-
     const handleScroll = () => {
         if (scrollRef.current) {
             const scrollTop = scrollRef.current.scrollTop;
@@ -150,11 +132,11 @@ const Scroll = ({ components }) => {
                     zIndex: 1,
                     color: "#FFF",
                     animation: "bounce 2s infinite",
-                    overflow:'hidden'
+                    overflow: 'hidden'
                 }}
                 onClick={moveToTop}
             >
-                <ArrowCircleUpIcon sx={{ fontSize: {xs:25, md:30} }}/>
+                <ArrowCircleUpIcon sx={{ fontSize: { xs: 25, md: 30 } }} />
             </div>
         </div>
     );

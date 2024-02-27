@@ -104,7 +104,7 @@ const Header = ({ clickHandler }) => {
           }}
           sx={{ display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' }, backgroundColor: '', width: '100%', }}
         >
-           {navigationButtons.map(({ id, label }, idx) => (
+          {navigationButtons.map(({ id, label }, idx) => (
             <MenuItem key={idx} onClick={() => { clickHandler(id); closeMenu(); }} sx={{ justifyContent: 'center' }}>
               {label}
             </MenuItem>

@@ -15,7 +15,6 @@ import { Box } from '@mui/material';
  * @returns {JSX.Element} - SkillCard component JSX.
  */
 const SkillCard = ({ skill }) => {
-    // const [circlePosition, setCirclePosition] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
 
     /**
@@ -25,11 +24,6 @@ const SkillCard = ({ skill }) => {
      * @param {MouseEvent} e - Mouse move event object.
      */
     const handleMouseMove = () => {
-        // const boundingBox = e.currentTarget.getBoundingClientRect();
-        // const mouseX = e.clientX - boundingBox.left - boundingBox.width / 4;
-        // const mouseY = e.clientY - boundingBox.top - boundingBox.height;
-
-        // setCirclePosition({ x: mouseX, y: mouseY });
         setIsHovered(true)
     };
 

@@ -1,4 +1,4 @@
-// PreSkill.jsx
+// PreAI.jsx
 /*
 SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
