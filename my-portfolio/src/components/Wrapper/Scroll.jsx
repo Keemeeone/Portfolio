@@ -18,6 +18,7 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 const Scroll = ({ components }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [headerVisible, setHeaderVisible] = useState(true); // Add state for header visibility
 
     const scrollRef = useRef();
 
@@ -28,9 +29,8 @@ const Scroll = ({ components }) => {
 
             const newIndex = scrollTop / componentHeight;
             setActiveIndex(newIndex);
-
-            // 스크롤 위치 업데이트
             setScrollPosition(scrollTop);
+            setHeaderVisible(scrollTop <= scrollPosition || scrollTop === 0);
         }
     };
 
@@ -87,6 +87,7 @@ const Scroll = ({ components }) => {
                 orientation={'vertical'}
                 length={components.length}
                 clickHandler={updateSlideState}
+                isVisible={headerVisible}
             />
             {scrollPosition !== 0 && (
                 <Motion

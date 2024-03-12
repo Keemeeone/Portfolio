@@ -65,11 +65,11 @@ const Project = ({ selectedTab, projectsData }) => {
                     maxWidth: '100%',
                     borderRadius: '10px',
                     position: 'relative',
-                    opacity: isHovered ? 0.02 : 1,
+                    opacity: isHovered ? 0.01 : 1,
                 }}
             />
             {isHovered && (
-                <Box style={{ position: 'absolute', width: '70%' }}>
+                <Box style={{ position: 'absolute', width: '70%', }}>
                     <Typography
                         color={'#FFF'}
                         fontWeight={'bold'}

@@ -8,6 +8,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Container, Paper, Typography, Box, useTheme, useMediaQuery, responsiveFontSizes, Grid, ThemeProvider, Avatar } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import SendIcon from '@mui/icons-material/Send';
+import { ReactTyped } from "react-typed";
 
 const systemMessage = {
     "role": "system",
@@ -18,7 +19,7 @@ const systemMessage = {
         "If the user asks about 'He', it is Heewon.",
         "Answer all questions in maximum 3 sentences.",
         "Remember about Heewon Kim",
-        "Please note that this is not a requirement but a suggestion for better assistance. If the user asks questions other than about Heewon's experiences, or programming, you can say 'To best assist you, I'm prioritizing inquiries related to Heewon's experiences. Is there anything specific about Heewon that you would like to know?'",
+        // "Please note that this is not a requirement but a suggestion for better assistance. If the user asks questions other than about Heewon's experiences, or programming, you can say 'To best assist you, I'm prioritizing inquiries related to Heewon's experiences. Is there anything specific about Heewon that you would like to know?'",
         "If the user adds ! in front of the question, you must answer any question other than about Heewon.",
         "An ambitious and detail-oriented software developer, can be reached via email at khw0285@gmail.com. His professional profile can be viewed on LinkedIn (https://www.linkedin.com/in/heewon-kim-hkim/) and his projects are showcased on GitHub (https://github.com/Keemeeone). A comprehensive portfolio is available at https://keemeeone.github.io/.",
         "In summary, Heewon is a highly motivated individual with excellent communication skills, dedicated to fostering innovation. Proficient in various tools and languages including Java, C, Python, JavaScript, TypeScript, HTML5, CSS, MySQL, React, React-Native, Node.js, Postman, Git, Linux, Figma, FastAPI, JSON, pgAdmin, Jira, Agile, Scrum, Web Development, he excels in collaborative environments and has a proven track record of driving projects from concept to completion.",
@@ -29,24 +30,12 @@ const systemMessage = {
         "In his most recent role as a Back-end Developer at the Wisconsin State Cartographer's Office, Heewon significantly enhanced the website's user accessibility by implementing and developing an intuitive map-based interface and a versatile XML feature. He utilized Python for these projects, which provided him with valuable insights into the importance of efficient coding practices. To aid API developers in quickly finding the information they need, he built clear data formats using Python. These data formats extracted and organized data from over 2,000 complex XML files, making note navigation significantly easier and more intuitive. This replaced the complex township system, making it accessible to all developers and resulting in a 30% reduction in development time. This project also demonstrated the value of Agile Methodology. Heewon's proficiency in Agile and understanding of efficient coding practices position him well to contribute to software development as part of the Division of Motor Vehicles.",
         "Heewon holds a Bachelor of Computer Science from the University of Wisconsin - Madison, completing relevant courses in object-oriented programming, data structures, machine organization, operating systems, and more. He also attended Madison Area Technical College from September 2019 to December 2020.",
         "Heewon has an OPT (F-1) visa, which will start at the end of February 2024, and the STEM OPT can possibly be extended after three years.",
-        "If the user ask about 'Daeun', say them 'She is a cancer biology Ph.D, can eat 71 pieces of sushi, and has a boyfriend. She is confident that her boyfriend loves her a lot.'"
+        "If the user ask about 'Daeun', say them 'She is a cancer biology Ph.D, can eat 71 pieces of sushi, and has a boyfriend. She is confident that her boyfriend loves her a lot.'",
+        "He is in the United States, but he can work worldwide.",
+        "He is Korean"
     ]
 };
 
-
-/**
- * AIChat Component
- * 
- * This component represents a chat interface with an AI assistant powered by OpenAI's GPT-3.5-turbo model.
- * Users can interact with the assistant, and the conversation is displayed in the chat window.
- * 
- * @component
- * @example
- * // Example usage of AIChat component
- * <AIChat />
- * 
- * @returns {JSX.Element} Returns the JSX element for the AIChat component.
- */
 function AIChat() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -55,7 +44,7 @@ function AIChat() {
 
     const [messages, setMessages] = useState([
         {
-            message: "Hello, feel free to ask me anything about Heewon!",
+            message: "Hello, I'm Wonny! Feel free to ask me anything about Heewon!",
             sentTime: "just now",
             sender: "AI"
         }
@@ -74,7 +63,6 @@ function AIChat() {
         const newMessages = [...messages, newMessage];
         setMessages(newMessages);
 
-        setIsTyping(true);
         await messageChatGPT(newMessages);
         setUserInput('');
     };
@@ -88,7 +76,6 @@ function AIChat() {
     };
 
     const chatContainerRef = useRef(null);
-
     useEffect(() => {
         // Scroll to the bottom of the chat container
         if (chatContainerRef.current) {
@@ -156,15 +143,18 @@ function AIChat() {
                 setIsTyping(false);
             });
     }
+    const handleStringTyped = () => {
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    };
 
     return (
         <ThemeProvider theme={responsiveTheme}>
             <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
-                    CHAT WITH AI
-                </Typography>
-                <Paper style={{ width: '80%', scrollSnapType: 'y' }}>
-                    <Paper elevation={0} style={{ marginTop: '2vh', padding: "20px", height: isSmallScreen ? '30vh' : '40vh', overflowY: 'scroll', backgroundColor: '#FFF' }} ref={chatContainerRef}>
+                {/* <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
+                    ASK ABOUT ME
+                </Typography> */}
+                <Paper elevation={20} style={{ width: '80%', scrollSnapType: 'y', backgroundColor: 'rgba(10, 24, 17, 0.9)' }}>
+                    <Paper elevation={0} style={{ marginTop: '2vh', padding: "20px", height: isSmallScreen ? '30vh' : '50vh', overflowY: 'scroll', backgroundColor: 'transparent', }} ref={chatContainerRef}>
                         <Box sx={{ height: '100%' }}>
                             {messages.map((message, i) => (
                                 <Box
@@ -176,7 +166,7 @@ function AIChat() {
                                     }}
                                 >
                                     <Box style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                        {message.sender === 'user' ? <PersonIcon sx={{ color: '#236a46' }} /> : <Avatar src={'./developerIcon.png'} sx={{ width: isSmallScreen ? 30 : 45, height: isSmallScreen ? 30 : 45, backgroundColor: '' }} />}
+                                        {message.sender === 'user' ? <PersonIcon sx={{ color: '#FFF' }} /> : <Avatar src={'./developerIcon.png'} sx={{ width: isSmallScreen ? 30 : 45, height: isSmallScreen ? 30 : 45, backgroundColor: '' }} />}
                                     </Box>
                                     <Paper
                                         elevation={5}
@@ -186,15 +176,19 @@ function AIChat() {
                                             backgroundColor: '#C7ECDA'
                                         }}
                                     >
-                                        <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: isSmallScreen ? "0.5em" : "1em", color: '#0a1811' }}>
-                                            {message.message}
+                                        <Typography style={{ margin: '8px', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: isSmallScreen ? "0.5em" : "1em", color: '#0a1811', textAlign:'left' }} >
+                                            <ReactTyped
+                                                strings={[message.message]}
+                                                typeSpeed={30}
+                                                showCursor={false}
+                                                onComplete={handleStringTyped}
+                                            />
                                         </Typography>
                                     </Paper>
                                 </Box>
                             ))}
                         </Box>
                     </Paper>
-
                     <Box mb={1} sx={{ marginTop: 'auto', textAlign: 'center', }}>
                         <Grid container spacing={1} display={'flex'} justifyContent="center" alignItems="center">
                             <Grid item xs={10} sm={10}>
@@ -209,15 +203,35 @@ function AIChat() {
                                     onChange={(e) => setUserInput(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     sx={{
-                                        fontSize: isSmallScreen ? "0.5em" : "1em"
+                                        fontSize: isSmallScreen ? "0.5em" : "1em",
+                                        "& label": {
+                                            color: "white", // Set white color for the label
+                                        },
+                                        "& label.Mui-focused": {
+                                            color: "mediumseagreen", // Set white color for the label when focused
+                                        },
+                                        "& .MuiOutlinedInput-root": {
+                                            "& fieldset": {
+                                                borderColor: "white", // Set white color for the outline border
+                                            },
+                                            "&:hover fieldset": {
+                                                borderColor: "white", // Set white color for the outline border on hover
+                                            },
+                                            "&.Mui-focused fieldset": {
+                                                borderColor: "mediumseagreen", // Set white color for the outline border when focused
+                                            },
+                                            "& .MuiOutlinedInput-input": {
+                                                color: "white", // Set white color for the input text
+                                            },
+                                        },
                                     }}
                                 />
                             </Grid>
                             <Grid item xs={1} sm={1}>
-                                <SendIcon onClick={handleSend} sx={{ color: '#236a46', cursor: 'pointer', fontSize: isSmallScreen ? "1em" : "1.5em", }} />
+                                <SendIcon onClick={handleSend} sx={{ color: 'mediumseagreen', cursor: 'pointer', fontSize: isSmallScreen ? "1em" : "1.5em", }} />
                             </Grid>
                         </Grid>
-                        {isTyping && <Typography style={{ color: '#236a46', fontWeight: 'bold', fontSize: isSmallScreen ? "0.5em" : "1em", }}>AI is typing...</Typography>}
+                        {isTyping && <Typography style={{ color: '#FFF', fontWeight: 'bold', fontSize: isSmallScreen ? "0.5em" : "1em", }}>AI is typing...</Typography>}
                     </Box>
                 </Paper>
             </Container>

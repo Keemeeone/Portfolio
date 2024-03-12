@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 */
 
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button, useTheme, useMediaQuery } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Home from "../Home/Home";
 import AIChat from '../AIchat/AIchat';
@@ -20,16 +20,18 @@ import Contact from "../Contact/Contact";
  * @param {number} props.currIdx - Current index for navigation.
  * @param {Function} props.clickHandler - Click handler for navigation.
  */
-const Header = ({ clickHandler }) => {
+const Header = ({ clickHandler, isVisible }) => {
   const [menuAnchor, setMenuAnchor] = useState(null);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const navigationButtons = [
     { id: 0, label: 'Home', component: Home },
-    { id: 2, label: 'AIChat', component: AIChat },
-    { id: 4, label: 'Skills', component: Skill },
-    { id: 6, label: 'Projects', component: Projects },
-    { id: 7, label: 'Resume', component: Resume },
-    { id: 8, label: 'Contact', component: Contact },
+    { id: isSmallScreen ? 2 : 0, label: 'AIChat', component: AIChat },
+    { id: isSmallScreen ? 4 : 2, label: 'Skills', component: Skill },
+    { id: isSmallScreen ? 6 : 4, label: 'Projects', component: Projects },
+    { id: isSmallScreen ? 7 : 5, label: 'Resume', component: Resume },
+    { id: isSmallScreen ? 8 : 6, label: 'Contact', component: Contact },
   ];
 
   const openMenu = (event) => {
@@ -41,7 +43,7 @@ const Header = ({ clickHandler }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: '#0A1811', minHeight: '0', maxHeight: '100%', height: '4rem' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: '#0A1811', minHeight: '0', maxHeight: '100%', height: '4rem', transform: isVisible ? 'translate(0%,0%)' : 'translate(0,-100%)', transition: 'transform 0.5s ease-in-out' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's
