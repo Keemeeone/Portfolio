@@ -1,11 +1,9 @@
 // Wrapper.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary components and icons
 import React from "react";
-
 import Intro from "../Home/Home";
 import AIchat from "../AIchat/AIchat";
 import { Container, Grid } from "@mui/material";
@@ -13,14 +11,19 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 
 /**
  * Wrapper component containing the Main component and Scroll component with specified sections.
+ * @param {object} activeIndex - Index of the active section.
+ * @returns {JSX.Element} - JSX element containing the landing page layout.
  */
-const Landing = () => {
+const Landing = ({ activeIndex }) => {
     return (
-        <Container style={{ marginTop: "12.5vh", textAlign: "center" }}>
+        // Container for the landing page
+        <Container style={{ marginTop: "15vh", textAlign: "center" }}>
+            {/* Grid layout for sections */}
             <Grid container spacing={4} justifyContent="center" display="flex">
-                <Grid item xs={6} md={6}><Intro /></Grid>
-                <Grid item xs={6} md={6}><AIchat /></Grid>
+                <Grid item md={6}><Intro activeIndex={activeIndex} /></Grid> {/* Introduction section */}
+                <Grid item md={6}><AIchat /></Grid> {/* AI chat section */}
             </Grid>,
+            {/* CSS styling for the animation */}
             <style>
                 {`
                         @keyframes bounce {
@@ -36,6 +39,7 @@ const Landing = () => {
                         }
                     `}
             </style>
+            {/* Arrow icon for scrolling */}
             <KeyboardDoubleArrowDownIcon sx={{ fontSize: 40, color: "#FFF", animation: "bounce 1s infinite" }} />
         </Container>
     );

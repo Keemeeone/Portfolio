@@ -43,7 +43,7 @@ const Header = ({ clickHandler, isVisible }) => {
   };
 
   return (
-    <AppBar color="transparent" elevation={0} sx={{ backgroundColor: '#0A1811', minHeight: '0', maxHeight: '100%', height: '4rem', transform: isVisible ? 'translate(0%,0%)' : 'translate(0,-100%)', transition: 'transform 0.5s ease-in-out' }}>
+    <AppBar color="transparent" elevation={0} sx={{ backgroundColor:'#0a1811', minHeight: '0', maxHeight: '100%', height: '4rem', transform: isVisible ? 'translate(0%,0%)' : 'translate(0,-100%)', transition: 'transform 0.5s ease-in-out' }}>
       <Toolbar>
         <Typography variant="h5" fontWeight={"bold"} sx={{ flexGrow: 1, textDecoration: 'none', color: '#FFF', userSelect: 'none' }}>
           HEEWON's

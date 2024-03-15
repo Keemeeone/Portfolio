@@ -1,9 +1,8 @@
 // SkillCard.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
@@ -15,6 +14,7 @@ import { Box } from '@mui/material';
  * @returns {JSX.Element} - SkillCard component JSX.
  */
 const SkillCard = ({ skill }) => {
+    // State for tracking hover state
     const [isHovered, setIsHovered] = useState(false);
 
     /**
@@ -27,12 +27,15 @@ const SkillCard = ({ skill }) => {
         setIsHovered(true)
     };
 
+    // Event handler for mouse leave from the skill card
     const handleMouseLeave = () => {
         setIsHovered(false)
     };
 
+    // Render the SkillCard component with interactive animation
     return (
         <>
+            {/* Container for the skill card */}
             <Box
                 style={{
                     display: 'flex',
@@ -45,6 +48,7 @@ const SkillCard = ({ skill }) => {
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
             >
+                {/* Image representing the skill */}
                 <img
                     alt={skill.name}
                     style={{
@@ -52,10 +56,10 @@ const SkillCard = ({ skill }) => {
                         height: '8vh',
                         objectFit: 'cover',
                         animation: isHovered ? 'moveHorizontal 1.5s ease-in-out' : '',
-                        // zIndex: 1
                     }}
                     src={skill.image}
                 />
+                {/* Interactive circle for the skill */}
                 <Box
                     style={{
                         position: 'absolute',
@@ -71,20 +75,15 @@ const SkillCard = ({ skill }) => {
                             height: '6rem',
                             backgroundColor: '#1bf689',
                             borderRadius: '50%',
-                            // opacity: '0.5',
-                            zIndex: 0,
                         }}
-                    >
-
-                    </Box>
+                    ></Box>
+                    {/* Text displaying the skill name */}
                     <Box
                         style={{
                             marginTop: '-60%',
                             color: '#143123',
                             textAlign: 'center',
                             fontWeight: 'bold',
-                            // opacity:'2',
-                            zIndex: 3,
                         }}
                     >
                         {skill.name}
@@ -92,15 +91,10 @@ const SkillCard = ({ skill }) => {
                 </Box>
             </Box>
 
+            {/* CSS animation for interactive elements */}
             <style>
                 {`
                     @keyframes moveHorizontal {
-                        // 0% {
-                        //     transform: rotateY(180deg) perspective(1000px);
-                        // }
-                        // // 50% {
-                        // //     transform: rotateY(180deg) perspective(100px);
-                        // // }
                         100% {
                             transform: rotateY(360deg) perspective(1000px);
                         }
@@ -108,12 +102,6 @@ const SkillCard = ({ skill }) => {
                 `}
                 {`
                     @keyframes textHorizontal {
-                        // 0% {
-                        //     transform: rotateY(180deg) perspective(1000px);
-                        // }
-                        // // 50% {
-                        // //     transform: rotateY(180deg) perspective(100px);
-                        // // }
                         100% {
                             transform: rotateY(360deg) perspective(1000px);
                         }

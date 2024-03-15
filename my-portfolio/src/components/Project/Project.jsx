@@ -1,33 +1,35 @@
 // Project.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
 
 /**
  * Functional component representing a project display.
- *
  * @param {Object} props - Component properties.
  * @param {Object} props.selectedTab - Currently selected tab with project details.
  * @param {Array} props.projectsData - Array of project data.
- * @returns {JSX.Element} - Project component JSX.
+ * @returns {JSX.Element} - JSX element representing the Project component.
  */
 const Project = ({ selectedTab, projectsData }) => {
+    // State for tracking current image index and hover state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
+    // Event handler for mouse enter
     const handleMouseEnter = () => {
         setIsHovered(true);
     };
 
+    // Event handler for mouse leave
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
 
+    // Effect for image transition
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
@@ -36,6 +38,7 @@ const Project = ({ selectedTab, projectsData }) => {
         return () => clearInterval(intervalId);
     }, [projectsData]);
 
+    // Render the Project component with motion animations
     return (
         <motion.div
             key={selectedTab ? selectedTab.id : 'empty'}
@@ -54,6 +57,7 @@ const Project = ({ selectedTab, projectsData }) => {
                 alignItems: 'center',
             }}
         >
+            {/* Project image */}
             <img
                 alt={selectedTab.title}
                 src={selectedTab.imageUrls[currentImageIndex] || selectedTab.imageUrls[0]}
@@ -68,8 +72,10 @@ const Project = ({ selectedTab, projectsData }) => {
                     opacity: isHovered ? 0.01 : 1,
                 }}
             />
+            {/* Hover details */}
             {isHovered && (
                 <Box style={{ position: 'absolute', width: '70%', }}>
+                    {/* Project title */}
                     <Typography
                         color={'#FFF'}
                         fontWeight={'bold'}
@@ -81,6 +87,7 @@ const Project = ({ selectedTab, projectsData }) => {
                     >
                         {selectedTab.title}
                     </Typography>
+                    {/* Project role */}
                     <Typography
                         color={'#FFF'}
                         fontWeight={'bold'}
@@ -90,6 +97,7 @@ const Project = ({ selectedTab, projectsData }) => {
                     >
                         {selectedTab.role}
                     </Typography>
+                    {/* Project description */}
                     <Typography
                         color={'#FFF'}
                         variant="body2"
@@ -99,6 +107,7 @@ const Project = ({ selectedTab, projectsData }) => {
                     >
                         {selectedTab.description}
                     </Typography>
+                    {/* Demo button or message */}
                     <Box sx={{ marginTop: 'auto', textAlign: 'center' }}>
                         {selectedTab.demoLink ? (
                             <Button

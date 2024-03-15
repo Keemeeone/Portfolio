@@ -1,16 +1,20 @@
+// Footer.jsx
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 
 /**
  * Footer component displaying copyright information.
+ * @returns {JSX.Element} - Footer component JSX.
  */
 const Footer = () => {
+    // Style for the footer container
     const footerStyle = {
         position: 'absolute',
         bottom: 0,
         width: '100%',
     };
 
+    // Style for the footer container
     const containerStyle = {
         backgroundColor: 'rgba(40, 99, 70, 0.2)',
         color: 'white',
@@ -18,6 +22,7 @@ const Footer = () => {
         minWidth: '100%',
     };
 
+    // Render the Footer component
     return (
         <Box sx={footerStyle} >
             <Container component="footer" sx={containerStyle}>

@@ -1,9 +1,8 @@
 // Motion.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -13,6 +12,7 @@ import { motion } from "framer-motion";
  * @param {number} props.scrollPosition - The current scroll position.
  * @param {number} props.scrollHeight - The total height of the scrollable area.
  * @param {number} props.clientHeight - The height of the visible client area.
+ * @returns {JSX.Element} - JSX element representing the motion component.
  */
 const Motion = ({ scrollPosition, scrollHeight, clientHeight }) => {
 
@@ -24,10 +24,13 @@ const Motion = ({ scrollPosition, scrollHeight, clientHeight }) => {
         return scrollPosition / (scrollHeight - clientHeight);
     };
 
+    // Render the motion component with dynamic scaling based on scroll position
     return (
         <motion.div
             style={{
+                // Dynamically adjust scaleX based on scroll position
                 scaleX: calculateScaleX(),
+                // Styling for the motion component
                 position: 'fixed',
                 bottom: 0,
                 left: 0,

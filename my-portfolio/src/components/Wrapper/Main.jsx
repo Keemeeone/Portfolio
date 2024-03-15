@@ -1,9 +1,8 @@
 // Main.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React, { useCallback } from "react";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
@@ -12,24 +11,30 @@ import { loadSlim } from "tsparticles-slim";
  * Main component representing the main content area.
  * @param {Object} props - Props for the Main component.
  * @param {React.ReactNode} props.children - The children components to be rendered inside the main content area.
+ * @returns {JSX.Element} - JSX element representing the main content area.
  */
 const Main = ({ children }) => {
+    // Callback function for initializing particles engine
     const particlesInit = useCallback(async engine => {
         console.log(engine);
         await loadSlim(engine);
     }, []);
 
+    // Callback function for handling particles loaded event
     const particlesLoaded = useCallback(async container => {
         await console.log("container", container);
     }, []);
 
+    // Render the main content area with particles background
     return (
         <main id="main" role="main" style={{ backgroundColor: '#0A1811' }}>
+            {/* Render particles background */}
             <Particles
                 id="tsparticles"
                 init={particlesInit}
                 loaded={particlesLoaded}
                 options={{
+                    // Particle animation options
                     fpsLimit: 120,
                     interactivity: {
                         events: {
@@ -53,17 +58,11 @@ const Main = ({ children }) => {
                             },
                         },
                     },
+                    // Particle appearance options
                     particles: {
                         color: {
                             value: "#65f9af",
                         },
-                        // links: {
-                        //     color: "#ffffff",
-                        //     distance: 150,
-                        //     enable: true,
-                        //     opacity: 0.5,
-                        //     width: 1,
-                        // },
                         move: {
                             direction: "none",
                             enable: true,
@@ -94,6 +93,7 @@ const Main = ({ children }) => {
                     detectRetina: true,
                 }}
             />
+            {/* Render children components */}
             {children}
         </main>
     );

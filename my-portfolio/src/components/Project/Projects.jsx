@@ -1,9 +1,8 @@
 // Projects.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React, { useState } from "react";
 import {
     Typography, useTheme,
@@ -14,74 +13,47 @@ import {
     Box
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
-import Project from "./Project";
-import "./Projects.css";
 
-const projectsData = [
-    {
-        id: 1,
-        icon: "🧑‍🎓",
-        title: "College Mate",
-        role: "Frontend Developer",
-        description:
-            "I forged the front-end of College Mate, a University of Wisconsin–Madison app fostering student connections. Building with React, React Native, RESTful APIs, TypeScript, and HTML/CSS, I crafted user-friendly interfaces and engaging features. My focus on responsiveness ensured College Mate shines on any device, while pre-rendered wrapper pages slashed initial load times by 40% – all to get users interacting in a blink.",
-        imageUrls: [
-            "./CollegeMate1.png?as=webp",
-            "./CollegeMate2.png?as=webp",
-            "./CollegeMate3.png?as=webp",
-        ],
-        demoLink: "https://collegemate.app/",
-    },
-    {
-        id: 2,
-        icon: "🗺️",
-        title: "Wisconsin SCO",
-        role: "Backend Developer",
-        description:
-            "My key strengths lie in simplifying complex data and user interactions. I transformed a reliance on township expertise into a 50% more accessible map interface, and untangled 2,136 XML files with Python, building an export powerhouse that converts survey notes into any format, from CSV to JSON, empowering faster workflows and informed decisions. \n*Unfortunately, a demo cannot be provided due to company privacy restrictions.",
-        imageUrls: ["./SCOmap.png?as=webp", "./SCOgithub.png?as=webp"],
-    },
-    {
-        id: 3,
-        icon: "👨‍🚀",
-        title: "Portfolio",
-        role: "Web Developer",
-        description:
-            "👩‍💻🚀 Dive into a vibrant tapestry of my skills and projects, showcased in this comprehensive portfolio. From weaving responsive and interactive designs with JSX, React, and Node.js to transforming intricate data into user-friendly tapestries, I leverage modern tools like MUI to breathe life into your vision. Unfurl the scroll to unveil the breadth of my expertise across web development and creative design – click to see my work in action! #Portfolio #WebDev #Design",
-        imageUrls: [
-            "./portfolio1.png?as=webp",
-            "./portfolio2.png?as=webp",
-            "./portfolio3.png?as=webp",
-            "./portfolio4.png?as=webp",
-        ],
-        demoLink: "https://github.com/Keemeeone/Portfolio/tree/main",
-    },
-];
+import Project from "./Project"; // Importing the Project component
+import data from "../../data/data"; // Importing the project data
+import "./Projects.css"; // Importing CSS styles for Projects component
+
+// Extracting project data from external data source
+const projectsData = data.projectsData;
 
 /**
  * Functional component representing a project display.
+ * @returns {JSX.Element} - JSX element representing the Projects component.
  */
 const Projects = () => {
-
+    // Theme and media query hooks
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const responsiveTheme = responsiveFontSizes(theme);
 
+    // State for tracking the selected tab
     const [selectedTab, setSelectedTab] = useState(projectsData[0]);
 
+    // Render the Projects component with project tabs and details
     return (
         <ThemeProvider theme={responsiveTheme}>
+            {/* Container for projects section */}
             <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                {/* Title for projects section */}
                 <Typography color={'#FFF'} fontWeight={"bold"} variant="h2" mb={isSmallScreen ? 10 : 5} style={{ fontSize: isSmallScreen ? "1.5em" : "3em", textAlign: "center" }}>
                     PROJECTS
                 </Typography>
+                {/* Container for project tabs */}
                 <Box className="window tabs">
+                    {/* Navigation for project tabs */}
                     <nav className="nav">
                         <ul className="ul">
+                            {/* Mapping through project data to render tabs */}
                             {projectsData.map((item) => (
                                 <Box className={`lis ${item === selectedTab ? "selected" : ""}`} key={item.id}>
                                     <li onClick={() => setSelectedTab(item)}>
                                         {`${item.icon} ${item.title}`}
+                                        {/* Conditional rendering of underline animation */}
                                         {item === selectedTab ? (
                                             <motion.div className="underline" layoutId="underline" />
                                         ) : null}
@@ -90,8 +62,11 @@ const Projects = () => {
                             ))}
                         </ul>
                     </nav>
+                    {/* Box for project details */}
                     <Box>
+                        {/* AnimatePresence for project switching animation */}
                         <AnimatePresence mode="wait">
+                            {/* Render the Project component */}
                             <Project selectedTab={selectedTab} projectsData={projectsData} />
                         </AnimatePresence>
                     </Box>

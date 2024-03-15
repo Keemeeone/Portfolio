@@ -1,11 +1,9 @@
 // Scroll.jsx
 /*
-SPDX-FileCopyrightText: © 2024 Heewon Kim <khw0285@gmail.com>
 SPDX-License-Identifier: MIT
 */
-
+// Importing necessary libraries and components
 import React, { useState, useRef } from "react";
-
 import Header from "../Header/Header";
 import Motion from "./Motion";
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
@@ -14,19 +12,24 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
  * Scroll component handling vertical scrolling and displaying a Header.
  * @param {Object} props - Props for the Scroll component.
  * @param {React.Component[]} props.components - Array of React components to be displayed.
+ * @returns {JSX.Element} - JSX element representing the scroll component.
  */
 const Scroll = ({ components }) => {
+    // State variables for managing scroll and header visibility
     const [activeIndex, setActiveIndex] = useState(0);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [headerVisible, setHeaderVisible] = useState(true); // Add state for header visibility
 
+    // Ref for accessing scroll container
     const scrollRef = useRef();
 
+    // Function to handle scroll event
     const handleScroll = () => {
         if (scrollRef.current) {
             const scrollTop = scrollRef.current.scrollTop;
             const componentHeight = scrollRef.current.clientHeight;
 
+            // Calculate active index and update state variables
             const newIndex = scrollTop / componentHeight;
             setActiveIndex(newIndex);
             setScrollPosition(scrollTop);
@@ -34,6 +37,7 @@ const Scroll = ({ components }) => {
         }
     };
 
+    // Function to calculate opacity based on scroll position
     const calculateOpacity = (index) => {
         if (scrollRef.current) {
             const componentHeight = scrollRef.current.clientHeight;
@@ -42,14 +46,13 @@ const Scroll = ({ components }) => {
 
             // Calculate opacity based on the distance to the component
             const opacity = 1 - Math.min(distanceToComponent / maxDistance, 1);
-
             return opacity;
         }
-
         // Default opacity if scrollRef.current is undefined
         return 1;
     };
 
+    // Function to scroll to a specific component
     const scrollToComponent = (index) => {
         if (scrollRef.current) {
             const componentHeight = scrollRef.current.clientHeight;
@@ -60,10 +63,12 @@ const Scroll = ({ components }) => {
         }
     };
 
+    // Function to update slide state
     const updateSlideState = (index) => {
         scrollToComponent(index);
     };
 
+    // Function to move to the top of the page
     const moveToTop = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollTo({
@@ -73,6 +78,7 @@ const Scroll = ({ components }) => {
         }
     };
 
+    // Render the scroll component with header and children components
     return (
         <div
             ref={scrollRef}
@@ -83,12 +89,14 @@ const Scroll = ({ components }) => {
                 scrollBehavior: "smooth",
             }}
         >
+            {/* Render header component */}
             <Header
                 orientation={'vertical'}
                 length={components.length}
                 clickHandler={updateSlideState}
                 isVisible={headerVisible}
             />
+            {/* Render motion component */}
             {scrollPosition !== 0 && (
                 <Motion
                     scrollPosition={scrollPosition}
@@ -97,6 +105,7 @@ const Scroll = ({ components }) => {
                 />
             )}
 
+            {/* Render children components */}
             {components.map((component, index) => (
                 <div
                     key={index}
@@ -109,6 +118,7 @@ const Scroll = ({ components }) => {
                     {React.cloneElement(component, { isActive: index === activeIndex, scrollPosition, activeIndex })}
                 </div>
             ))}
+            {/* CSS styling for animation */}
             <style>
                 {`
                         @keyframes bounce {
@@ -124,6 +134,7 @@ const Scroll = ({ components }) => {
                         }
                     `}
             </style>
+            {/* Render button to move to top */}
             <div
                 style={{
                     position: "fixed",
